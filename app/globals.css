@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-canvas text-ink antialiased;
+  }
+}
+
+/* Homepage horizontal gallery — thin, understated scrollbar */
+.featured-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(90, 99, 85, 0.35) transparent;
+}
+
+.featured-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.featured-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(90, 99, 85, 0.35);
+  border-radius: 999px;
+}
