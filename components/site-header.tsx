@@ -9,7 +9,7 @@ import { siteConfig } from "@/lib/site-config";
 
 function navLinkClassName(active: boolean) {
   const base =
-    "relative text-sm font-medium tracking-wide transition-colors duration-300 after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-left after:bg-sage after:transition-transform after:duration-300";
+    "relative rounded-sm text-sm font-medium tracking-wide transition-colors duration-300 after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-left after:bg-sage after:transition-transform after:duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas";
   if (active) {
     return `${base} text-ink after:scale-x-100`;
   }
@@ -30,12 +30,16 @@ export function SiteHeader() {
     };
   }, [open]);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   return (
     <header className="sticky top-0 z-50 border-b border-ink/5 bg-canvas/85 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-5 sm:px-8 lg:px-10">
         <Link
           href="/"
-          className="font-display text-2xl font-semibold uppercase tracking-[0.14em] text-ink transition-opacity hover:opacity-80 sm:text-3xl"
+          className="font-display text-2xl font-semibold uppercase tracking-[0.14em] text-ink transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:text-3xl"
         >
           {siteConfig.artistName}
         </Link>
@@ -58,7 +62,7 @@ export function SiteHeader() {
 
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-md p-2 text-ink transition-colors hover:bg-ink/[0.04] md:hidden"
+          className="inline-flex items-center justify-center rounded-md p-2 text-ink transition-colors hover:bg-ink/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas md:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((v) => !v)}
@@ -93,7 +97,7 @@ export function SiteHeader() {
                   >
                     <Link
                       href={item.href}
-                      className={`block rounded-md px-3 py-3 text-base font-medium transition-colors hover:bg-ink/[0.04] ${
+                      className={`block rounded-md px-3 py-3 text-base font-medium transition-colors hover:bg-ink/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas ${
                         active ? "text-sage" : "text-ink/90 hover:text-ink"
                       }`}
                       aria-current={active ? "page" : undefined}

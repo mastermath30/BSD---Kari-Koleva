@@ -24,7 +24,7 @@ export function AboutPageBody() {
           <div className="border-t border-ink/10 pt-8">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center border border-sage bg-sage px-8 py-3 font-sans text-sm font-medium tracking-wide text-canvas transition-colors duration-300 hover:border-sage-deep hover:bg-sage-deep"
+              className="inline-flex min-h-[44px] items-center justify-center border border-sage bg-sage px-8 py-3 font-sans text-sm font-medium tracking-wide text-canvas transition-colors duration-300 hover:border-sage-deep hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/45 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
             >
               {aboutPageCopy.contactButtonLabel}
             </Link>

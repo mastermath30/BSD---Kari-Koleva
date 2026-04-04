@@ -20,24 +20,31 @@ export function SiteFooter() {
           </div>
 
           <nav
-            className="flex flex-wrap gap-x-10 gap-y-4 font-sans text-sm"
+            className="flex flex-wrap gap-x-8 gap-y-3 font-sans text-sm sm:gap-x-10"
             aria-label="Footer"
           >
             <Link
               href="/about"
-              className="text-canvas/85 transition-colors duration-300 hover:text-canvas"
+              className="rounded-sm text-canvas/85 transition-colors duration-300 hover:text-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-canvas/50 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-footer"
             >
               About
             </Link>
             <Link
+              href="/commissions"
+              className="rounded-sm text-canvas/85 transition-colors duration-300 hover:text-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-canvas/50 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-footer"
+            >
+              Commissions
+            </Link>
+            <Link
               href="/contact"
-              className="text-canvas/85 transition-colors duration-300 hover:text-canvas"
+              className="rounded-sm text-canvas/85 transition-colors duration-300 hover:text-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-canvas/50 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-footer"
             >
               Contact
             </Link>
             <a
               href="#"
-              className="text-canvas/85 transition-colors duration-300 hover:text-canvas"
+              className="rounded-sm text-canvas/85 transition-colors duration-300 hover:text-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-canvas/50 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-footer"
+              title="Privacy policy link not configured"
             >
               Privacy Policy
             </a>
@@ -51,7 +58,7 @@ export function SiteFooter() {
               href={siteConfig.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-2 rounded-md border border-canvas/25 px-3 py-2 text-sm text-canvas/90 transition-colors duration-300 hover:border-canvas/50 hover:bg-canvas/10"
+              className="mt-3 inline-flex items-center gap-2 rounded-md border border-canvas/25 px-3 py-2 text-sm text-canvas/90 transition-colors duration-300 hover:border-canvas/50 hover:bg-canvas/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-canvas/50 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-footer"
             >
               <Instagram className="h-4 w-4" strokeWidth={1.5} aria-hidden />
               <span>Instagram</span>

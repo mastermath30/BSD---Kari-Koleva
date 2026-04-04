@@ -12,4 +12,7 @@ export const contactPageCopy = {
   },
   uploadHint: "Drag and drop images here, or click to browse",
   submitLabel: "Send message",
+  /** Shown only after valid submit while no API/server handler exists. */
+  noBackendNotice:
+    "This form does not send messages yet — no email endpoint is configured. Please use the direct contact details instead.",
 } as const;

@@ -16,12 +16,12 @@ export function PageTitleBand({
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       className="border-b border-ink/[0.06] bg-titleBand"
     >
-      <div className="mx-auto max-w-6xl px-5 py-9 text-center sm:px-8 sm:py-11 lg:px-10">
-        <h1 className="font-display text-3xl font-semibold tracking-[0.08em] text-ink sm:text-4xl">
+      <div className="mx-auto max-w-6xl px-5 py-10 text-center sm:px-8 sm:py-12 lg:px-10">
+        <h1 className="font-display text-3xl font-semibold tracking-[0.08em] text-ink sm:text-[2.125rem]">
           {title}
         </h1>
         {subtitle ? (
-          <p className="mx-auto mt-5 max-w-2xl font-sans text-sm leading-relaxed text-muted sm:text-base">
+          <p className="mx-auto mt-4 max-w-2xl font-sans text-sm leading-relaxed text-muted sm:mt-5 sm:text-base">
             {subtitle}
           </p>
         ) : null}

@@ -8,7 +8,12 @@ export function CommissionsResourceCards() {
         <Link
           key={item.id}
           href={item.href}
-          className="group block rounded-sm border border-ink/10 bg-canvas p-8 shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-sage/35 hover:shadow-md sm:p-10"
+          className="group block rounded-sm border border-ink/10 bg-canvas p-8 shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-sage/35 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:p-10"
+          title={
+            item.href === "#"
+              ? `${item.title} — link not configured yet`
+              : undefined
+          }
         >
           <h2 className="font-display text-xl font-semibold tracking-wide text-ink sm:text-2xl">
             {item.title}

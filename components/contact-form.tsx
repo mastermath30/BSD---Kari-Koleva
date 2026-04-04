@@ -8,14 +8,19 @@ type ContactFormProps = {
   introText?: string;
 };
 
+const focusRing =
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/45 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas";
+
 /**
- * UI-only contact form. Hook up `onSubmit` to an API, server action, or form service when ready.
+ * Client-side validation only. There is no server endpoint — see `noBackendNotice` after a valid submit.
+ * TODO: Connect `onSubmit` to an API route, server action, Formspree, Resend, etc.
  */
 export function ContactForm({ introText }: ContactFormProps) {
   const formId = useId();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [filesSummary, setFilesSummary] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [showNoBackendNotice, setShowNoBackendNotice] = useState(false);
 
   const onFilesChange = useCallback(() => {
     const input = fileInputRef.current;
@@ -29,20 +34,27 @@ export function ContactForm({ introText }: ContactFormProps) {
     setFilesSummary(names);
   }, []);
 
+  const clearNotice = useCallback(() => {
+    setShowNoBackendNotice(false);
+  }, []);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: connect to backend, email API, or server action.
+    const form = e.currentTarget;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    setShowNoBackendNotice(true);
   };
 
   const fieldClass =
-    "w-full border-0 border-b border-ink/15 bg-transparent py-2.5 font-sans text-sm text-ink placeholder:text-muted/70 focus:border-sage focus:outline-none focus:ring-0 transition-colors duration-300";
+    "w-full border-0 border-b border-ink/15 bg-transparent py-2.5 font-sans text-sm text-ink placeholder:text-muted/70 transition-colors duration-300 focus:outline-none focus:ring-0 focus-visible:border-sage";
+
+  const uploadHintId = `${formId}-upload-hint`;
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-8"
-      noValidate
-    >
+    <form onSubmit={handleSubmit} className="space-y-8">
       <header className="space-y-4">
         <h2 className="font-display text-2xl font-semibold tracking-wide text-ink sm:text-3xl">
           {contactPageCopy.formHeading}
@@ -62,8 +74,11 @@ export function ContactForm({ introText }: ContactFormProps) {
             name="name"
             type="text"
             autoComplete="name"
+            required
             placeholder={contactPageCopy.fields.name}
             className={fieldClass}
+            onChange={clearNotice}
+            onInput={clearNotice}
           />
         </div>
         <div>
@@ -75,14 +90,23 @@ export function ContactForm({ introText }: ContactFormProps) {
             name="email"
             type="email"
             autoComplete="email"
+            required
             placeholder={contactPageCopy.fields.email}
             className={fieldClass}
+            onChange={clearNotice}
+            onInput={clearNotice}
           />
         </div>
 
         <div>
-          <p className="mb-2 font-sans text-xs font-medium uppercase tracking-[0.16em] text-muted">
-            {contactPageCopy.fields.images}
+          <p
+            id={uploadHintId}
+            className="mb-2 font-sans text-xs font-medium uppercase tracking-[0.16em] text-muted"
+          >
+            {contactPageCopy.fields.images}{" "}
+            <span className="font-normal normal-case tracking-normal text-muted/80">
+              (optional)
+            </span>
           </p>
           <input
             ref={fileInputRef}
@@ -92,7 +116,11 @@ export function ContactForm({ introText }: ContactFormProps) {
             accept="image/*"
             multiple
             className="sr-only"
-            onChange={onFilesChange}
+            aria-describedby={uploadHintId}
+            onChange={(ev) => {
+              clearNotice();
+              onFilesChange();
+            }}
           />
           <label
             htmlFor={`${formId}-images`}
@@ -119,12 +147,13 @@ export function ContactForm({ introText }: ContactFormProps) {
                 try {
                   input.files = files;
                   onFilesChange();
+                  clearNotice();
                 } catch {
                   /* Some browsers restrict assignment; file input still works via click. */
                 }
               }
             }}
-            className={`flex min-h-[140px] cursor-pointer flex-col items-center justify-center rounded-sm border border-dashed bg-canvas px-4 py-8 text-center transition-colors duration-300 hover:bg-sage/[0.04] ${
+            className={`flex min-h-[140px] cursor-pointer flex-col items-center justify-center rounded-sm border border-dashed bg-canvas px-4 py-8 text-center transition-colors duration-300 hover:bg-sage/[0.04] ${focusRing} ${
               isDragging
                 ? "border-sage/70 bg-sage/[0.06]"
                 : "border-sage/35 hover:border-sage/55"
@@ -132,6 +161,9 @@ export function ContactForm({ introText }: ContactFormProps) {
           >
             <span className="font-sans text-sm text-muted">
               {contactPageCopy.uploadHint}
+            </span>
+            <span className="mt-1 font-sans text-xs text-muted/80">
+              Files stay on your device until a server upload is configured.
             </span>
             {filesSummary ? (
               <span className="mt-2 max-w-full truncate font-sans text-xs text-ink/70">
@@ -149,15 +181,28 @@ export function ContactForm({ introText }: ContactFormProps) {
             id={`${formId}-message`}
             name="message"
             rows={5}
+            required
             placeholder={contactPageCopy.fields.message}
-            className={`${fieldClass} resize-y min-h-[120px]`}
+            className={`${fieldClass} min-h-[120px] resize-y`}
+            onChange={clearNotice}
+            onInput={clearNotice}
           />
         </div>
       </div>
 
+      {showNoBackendNotice ? (
+        <p
+          className="rounded-sm border border-sage/25 bg-sage/[0.06] px-4 py-3 font-sans text-sm leading-relaxed text-ink/90"
+          role="status"
+          aria-live="polite"
+        >
+          {contactPageCopy.noBackendNotice}
+        </p>
+      ) : null}
+
       <button
         type="submit"
-        className="inline-flex items-center justify-center bg-sage px-8 py-3 font-sans text-sm font-medium tracking-wide text-canvas transition-colors duration-300 hover:bg-sage-deep"
+        className={`inline-flex min-h-[44px] items-center justify-center bg-sage px-8 py-3 font-sans text-sm font-medium tracking-wide text-canvas transition-colors duration-300 hover:bg-sage-deep ${focusRing}`}
       >
         {contactPageCopy.submitLabel}
       </button>

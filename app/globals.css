@@ -11,8 +11,9 @@
   }
 }
 
-/* Homepage horizontal gallery — thin, understated scrollbar */
+/* Homepage horizontal gallery — thin scrollbar; horizontal pan on touch */
 .featured-scroll {
+  touch-action: pan-x;
   scrollbar-width: thin;
   scrollbar-color: rgba(90, 99, 85, 0.35) transparent;
 }

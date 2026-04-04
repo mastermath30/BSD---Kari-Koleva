@@ -43,11 +43,11 @@ export function CommissionsReviewsSection() {
         >
           Reviews
         </h2>
-        <p className="mt-2 font-sans text-sm text-muted">
-          Placeholder summary for future client reviews.
+        <p className="mt-2 max-w-xl font-sans text-sm text-muted">
+          Sample layout — replace with real reviews when available.
         </p>
 
-        <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,220px)_1fr] lg:gap-16">
+        <div className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,220px)_1fr] lg:gap-16">
           <div className="space-y-4">
             <div className="flex items-end gap-3">
               <span className="font-display text-4xl font-semibold text-ink">
@@ -58,18 +58,21 @@ export function CommissionsReviewsSection() {
             <RatingStars value={4.9} />
             <p className="font-sans text-xs text-muted">Overall rating (sample)</p>
 
-            <div className="space-y-2 pt-4">
+            <div
+              className="space-y-2.5 pt-4"
+              aria-label="Sample star distribution"
+            >
               {reviewsSummary.distribution.map((row) => (
                 <div
                   key={row.stars}
                   className="grid grid-cols-[2.5rem_1fr] items-center gap-3"
                 >
-                  <span className="font-sans text-xs text-muted">
+                  <span className="font-sans text-xs tabular-nums text-muted">
                     {row.stars}★
                   </span>
                   <div className="h-1.5 overflow-hidden rounded-full bg-ink/[0.06]">
                     <div
-                      className="h-full rounded-full bg-sage/50 transition-all"
+                      className="h-full rounded-full bg-sage/45 transition-all"
                       style={{ width: `${row.percent}%` }}
                     />
                   </div>
@@ -82,7 +85,7 @@ export function CommissionsReviewsSection() {
             {reviewPlaceholders.map((rev) => (
               <li
                 key={rev.id}
-                className="border-b border-ink/[0.06] pb-10 last:border-0 last:pb-0"
+                className="border-b border-ink/[0.06] pb-10 last:border-0 last:pb-0 first:pt-0"
               >
                 <blockquote className="font-sans text-base leading-relaxed text-ink/90">
                   “{rev.quote}”

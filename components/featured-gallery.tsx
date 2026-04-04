@@ -42,13 +42,18 @@ export function FeaturedGallery() {
     };
   }, [updateFocused]);
 
-  const onWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    const root = scrollerRef.current;
-    if (!root) return;
-    if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-    root.scrollLeft += e.deltaY;
-    e.preventDefault();
-  };
+  /** Vertical wheel → horizontal scroll; must be non-passive so preventDefault works. */
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+      el.scrollLeft += e.deltaY;
+      e.preventDefault();
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, []);
 
   return (
     <section
@@ -67,7 +72,6 @@ export function FeaturedGallery() {
       >
         <div
           ref={scrollerRef}
-          onWheel={onWheel}
           tabIndex={0}
           role="region"
           aria-label="Featured artwork gallery. Scroll horizontally."
@@ -83,8 +87,8 @@ export function FeaturedGallery() {
           {featuredArtworks.map((artwork, i) => (
             <div
               key={artwork.id}
-              ref={(el) => {
-                itemElsRef.current[i] = el;
+              ref={(node) => {
+                itemElsRef.current[i] = node;
               }}
               className="snap-center shrink-0 px-2 sm:px-3"
             >
