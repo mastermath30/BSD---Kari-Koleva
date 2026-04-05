@@ -15,7 +15,7 @@ export function DirectContactPanel({ className = "" }: { className?: string }) {
           </span>
           <a
             href={`mailto:${contactInfo.email}`}
-            className="text-ink transition-colors duration-300 hover:text-sage focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+            className="text-ink transition-all duration-300 ease-out hover:text-sage hover:translate-y-[-1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
           >
             {contactInfo.email}
           </a>
@@ -26,7 +26,7 @@ export function DirectContactPanel({ className = "" }: { className?: string }) {
           </span>
           <a
             href={`tel:${contactInfo.phoneTel}`}
-            className="text-ink transition-colors duration-300 hover:text-sage focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+            className="text-ink transition-all duration-300 ease-out hover:text-sage hover:translate-y-[-1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
           >
             {contactInfo.phoneDisplay}
           </a>
@@ -39,7 +39,7 @@ export function DirectContactPanel({ className = "" }: { className?: string }) {
             href={contactInfo.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-ink transition-colors duration-300 hover:text-sage focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+            className="text-ink transition-all duration-300 ease-out hover:text-sage hover:translate-y-[-1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
           >
             {contactInfo.instagramHandle}
           </a>

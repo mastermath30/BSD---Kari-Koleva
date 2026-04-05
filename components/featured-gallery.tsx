@@ -59,7 +59,7 @@ export function FeaturedGallery() {
     <section
       id="featured-work"
       aria-labelledby="featured-heading"
-      className="scroll-mt-28 w-full pb-16 pt-10 sm:pb-20 sm:pt-12"
+      className="scroll-mt-28 w-full pb-12 pt-8 xs:pb-14 xs:pt-10 sm:pb-16 sm:pt-12"
     >
       <h2 id="featured-heading" className="sr-only">
         Featured artwork
@@ -67,7 +67,7 @@ export function FeaturedGallery() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="w-full"
       >
         <div
@@ -75,12 +75,12 @@ export function FeaturedGallery() {
           tabIndex={0}
           role="region"
           aria-label="Featured artwork gallery. Scroll horizontally."
-          className="featured-scroll flex snap-x snap-mandatory overflow-x-auto overflow-y-hidden scroll-smooth pb-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+          className="featured-scroll flex snap-x snap-mandatory overflow-x-auto overflow-y-hidden scroll-smooth pb-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
         >
           <div
             className="shrink-0"
             style={{
-              width: "max(1rem, min(12vw, calc(50vw - 11rem)))",
+              width: "max(1.5rem, min(12vw, calc(50vw - 11rem)))",
             }}
             aria-hidden
           />
@@ -90,30 +90,33 @@ export function FeaturedGallery() {
               ref={(node) => {
                 itemElsRef.current[i] = node;
               }}
-              className="snap-center shrink-0 px-2 sm:px-3"
+              className="snap-center shrink-0 px-1.5 xs:px-2 sm:px-2.5 lg:px-3.5"
             >
               <article
-                className={`group relative origin-center transition-all duration-500 ease-out ${
+                className={`group relative origin-center transition-all duration-700 ease-out ${
                   focusedIndex === i
-                    ? "scale-[1.045] opacity-100"
-                    : "scale-100 opacity-[0.88]"
+                    ? "scale-[1.05] opacity-100"
+                    : "scale-100 opacity-[0.85]"
                 }`}
               >
                 <div
-                  className={`relative overflow-hidden rounded-sm ring-1 transition-[box-shadow] duration-500 ease-out ${
+                  className={`relative overflow-hidden rounded-sm ring-1 transition-all duration-700 ease-out ${
                     focusedIndex === i
-                      ? "shadow-[0_22px_55px_-14px_rgba(0,0,0,0.22)] ring-sage/25"
-                      : "shadow-[0_12px_36px_-14px_rgba(0,0,0,0.14)] ring-ink/[0.08]"
+                      ? "shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] ring-sage/30"
+                      : "shadow-[0_15px_40px_-12px_rgba(0,0,0,0.12)] ring-ink/[0.06]"
                   }`}
                 >
-                  <div className="relative aspect-[4/5] w-[min(88vw,420px)] md:aspect-[3/4] md:w-[min(38vw,400px)] lg:w-[min(32vw,380px)]">
+                  <div
+                    className={`relative aspect-[4/5] w-[min(85vw,380px)] xs:w-[min(88vw,400px)] md:aspect-[3/4] md:w-[min(40vw,380px)] lg:w-[min(32vw,360px)] 2xl:w-[min(30vw,340px)]`}
+                  >
                     <Image
                       src={artwork.src}
                       alt={artwork.alt}
                       fill
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                      className="object-cover transition-all duration-800 ease-out group-hover:scale-[1.03]"
                       sizes="(max-width: 768px) 88vw, 34vw"
                       priority={i < 3}
+                      quality={95}
                     />
                   </div>
                 </div>
@@ -123,7 +126,7 @@ export function FeaturedGallery() {
           <div
             className="shrink-0"
             style={{
-              width: "max(1rem, min(12vw, calc(50vw - 11rem)))",
+              width: "max(1.5rem, min(12vw, calc(50vw - 11rem)))",
             }}
             aria-hidden
           />

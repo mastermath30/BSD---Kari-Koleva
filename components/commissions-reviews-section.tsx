@@ -47,8 +47,8 @@ export function CommissionsReviewsSection() {
           Sample layout — replace with real reviews when available.
         </p>
 
-        <div className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,220px)_1fr] lg:gap-16">
-          <div className="space-y-4">
+        <div className="mt-16 grid gap-16 lg:grid-cols-[minmax(0,220px)_1fr] lg:gap-20">
+          <div className="space-y-6">
             <div className="flex items-end gap-3">
               <span className="font-display text-4xl font-semibold text-ink">
                 {reviewsSummary.averageLabel}
@@ -59,7 +59,7 @@ export function CommissionsReviewsSection() {
             <p className="font-sans text-xs text-muted">Overall rating (sample)</p>
 
             <div
-              className="space-y-2.5 pt-4"
+              className="space-y-3 pt-6"
               aria-label="Sample star distribution"
             >
               {reviewsSummary.distribution.map((row) => (
@@ -81,11 +81,11 @@ export function CommissionsReviewsSection() {
             </div>
           </div>
 
-          <ul className="space-y-10">
+          <ul className="space-y-12">
             {reviewPlaceholders.map((rev) => (
               <li
                 key={rev.id}
-                className="border-b border-ink/[0.06] pb-10 last:border-0 last:pb-0 first:pt-0"
+                className="border-b border-ink/[0.06] pb-12 last:border-0 last:pb-0 first:pt-0"
               >
                 <blockquote className="font-sans text-base leading-relaxed text-ink/90">
                   “{rev.quote}”

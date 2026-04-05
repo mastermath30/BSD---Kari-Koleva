@@ -49,7 +49,7 @@ export function ContactForm({ introText }: ContactFormProps) {
   };
 
   const fieldClass =
-    "w-full border-0 border-b border-ink/15 bg-transparent py-2.5 font-sans text-sm text-ink placeholder:text-muted/70 transition-colors duration-300 focus:outline-none focus:ring-0 focus-visible:border-sage";
+    "w-full border-0 border-b border-ink/15 bg-transparent py-2.5 xs:py-3 font-sans text-sm text-ink placeholder:text-muted/70 transition-all duration-300 ease-out focus:outline-none focus:ring-0 focus-visible:border-sage focus-visible:border-opacity-60";
 
   const uploadHintId = `${formId}-upload-hint`;
 
@@ -153,9 +153,9 @@ export function ContactForm({ introText }: ContactFormProps) {
                 }
               }
             }}
-            className={`flex min-h-[140px] cursor-pointer flex-col items-center justify-center rounded-sm border border-dashed bg-canvas px-4 py-8 text-center transition-colors duration-300 hover:bg-sage/[0.04] ${focusRing} ${
+            className={`flex min-h-[120px] xs:min-h-[140px] cursor-pointer flex-col items-center justify-center rounded-sm border border-dashed bg-canvas px-3 py-6 xs:px-4 xs:py-8 text-center transition-all duration-300 ease-out hover:bg-sage/[0.04] hover:border-opacity-60 ${focusRing} ${
               isDragging
-                ? "border-sage/70 bg-sage/[0.06]"
+                ? "border-sage/70 bg-sage/[0.06] scale-[1.02]"
                 : "border-sage/35 hover:border-sage/55"
             }`}
           >
@@ -202,7 +202,7 @@ export function ContactForm({ introText }: ContactFormProps) {
 
       <button
         type="submit"
-        className={`inline-flex min-h-[44px] items-center justify-center bg-sage px-8 py-3 font-sans text-sm font-medium tracking-wide text-canvas transition-colors duration-300 hover:bg-sage-deep ${focusRing}`}
+        className={`inline-flex min-h-[44px] items-center justify-center bg-sage px-8 py-3 font-sans text-sm font-medium tracking-wide text-canvas transition-all duration-300 ease-out hover:bg-sage-deep hover:scale-[1.02] active:scale-[0.98] ${focusRing}`}
       >
         {contactPageCopy.submitLabel}
       </button>
