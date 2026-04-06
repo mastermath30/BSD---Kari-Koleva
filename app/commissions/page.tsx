@@ -19,18 +19,18 @@ export default function CommissionsPage() {
         subtitle={commissionsCopy.titleBandSubtitle}
       />
 
-      <section className="mx-auto max-w-6xl px-4 py-8 text-center xs:px-5 sm:px-6 lg:px-8 2xl:px-10 sm:py-10 lg:py-12 2xl:py-14">
+      <section className="section-shell py-8 text-center sm:py-10 lg:py-12">
         <p className="mx-auto max-w-2xl font-sans text-sm leading-relaxed text-muted sm:text-base">
           {commissionsCopy.intro}
         </p>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-10 xs:px-5 sm:px-6 lg:px-8 2xl:px-10 sm:pb-12 lg:pb-16 2xl:pb-20">
+      <section className="section-shell pb-10 sm:pb-12 lg:pb-16 2xl:pb-20">
         <CommissionsResourceCards />
       </section>
 
       <section className="border-t border-ink/[0.06] bg-canvas">
-        <div className="mx-auto max-w-6xl px-4 py-12 xs:px-5 sm:px-6 lg:px-8 2xl:px-10 sm:py-14 lg:py-16 2xl:py-20">
+        <div className="section-shell section-rhythm">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14 2xl:gap-16">
             <ContactForm introText={commissionsCopy.formIntro} />
             <DirectContactPanel />

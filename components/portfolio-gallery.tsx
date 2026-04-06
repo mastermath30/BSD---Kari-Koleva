@@ -5,13 +5,13 @@ export function PortfolioGallery() {
   return (
     <section
       aria-label="Portfolio gallery"
-      className="mx-auto max-w-6xl px-3 py-8 sm:px-4 sm:py-10 md:px-5 md:py-12 lg:px-8 lg:py-14 xl:px-10 xl:py-16"
+      className="section-shell section-rhythm-tight"
     >
-      <div className="columns-1 gap-3 sm:gap-4 md:gap-5 lg:columns-2 xl:columns-3 [&>*]:mb-3 sm:[&>*]:mb-4 md:[&>*]:mb-5 lg:[&>*]:mb-6">
+      <div className="columns-1 gap-4 sm:gap-5 md:gap-5 lg:columns-2 xl:columns-3 [&>*]:mb-4 sm:[&>*]:mb-5 md:[&>*]:mb-5 lg:[&>*]:mb-6">
         {portfolioItems.map((item) => (
           <figure key={item.id} className="group break-inside-avoid">
             <div
-              className={`relative w-full overflow-hidden rounded-sm ring-1 ring-ink/[0.08] transition-all duration-500 ease-out group-hover:shadow-lg group-hover:ring-ink/15 group-hover:-translate-y-1 ${item.frameClass}`}
+              className={`relative w-full overflow-hidden rounded-sm ring-1 ring-ink/10 shadow-[0_10px_24px_-16px_rgba(17,24,39,0.28)] transition-all duration-500 ease-out group-hover:-translate-y-0.5 group-hover:shadow-[0_16px_36px_-20px_rgba(17,24,39,0.3)] group-hover:ring-ink/20 ${item.frameClass}`}
             >
               <Image
                 src={item.src}

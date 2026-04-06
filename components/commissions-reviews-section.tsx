@@ -36,19 +36,20 @@ export function CommissionsReviewsSection() {
       className="border-t border-ink/[0.06] bg-canvas"
       aria-labelledby="reviews-heading"
     >
-      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20 lg:px-10">
+      <div className="section-shell section-rhythm">
+        <p className="eyebrow-label">Social Proof</p>
         <h2
           id="reviews-heading"
-          className="font-display text-2xl font-semibold tracking-wide text-ink sm:text-3xl"
+          className="mt-2 font-display text-2xl font-semibold tracking-[0.04em] text-ink sm:text-3xl"
         >
           Reviews
         </h2>
-        <p className="mt-2 max-w-xl font-sans text-sm text-muted">
+        <p className="mt-2 max-w-xl font-sans text-sm leading-relaxed text-muted">
           Sample layout — replace with real reviews when available.
         </p>
 
-        <div className="mt-16 grid gap-16 lg:grid-cols-[minmax(0,220px)_1fr] lg:gap-20">
-          <div className="space-y-6">
+        <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,240px)_1fr] lg:gap-14">
+          <div className="surface-card p-6 sm:p-7 lg:p-8 space-y-6">
             <div className="flex items-end gap-3">
               <span className="font-display text-4xl font-semibold text-ink">
                 {reviewsSummary.averageLabel}
@@ -81,11 +82,11 @@ export function CommissionsReviewsSection() {
             </div>
           </div>
 
-          <ul className="space-y-12">
+          <ul className="surface-card divide-y divide-ink/[0.06] p-6 sm:p-7 lg:p-8">
             {reviewPlaceholders.map((rev) => (
               <li
                 key={rev.id}
-                className="border-b border-ink/[0.06] pb-12 last:border-0 last:pb-0 first:pt-0"
+                className="py-8 first:pt-0 last:pb-0"
               >
                 <blockquote className="font-sans text-base leading-relaxed text-ink/90">
                   “{rev.quote}”

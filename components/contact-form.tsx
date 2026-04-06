@@ -54,9 +54,10 @@ export function ContactForm({ introText }: ContactFormProps) {
   const uploadHintId = `${formId}-upload-hint`;
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8">
+    <form onSubmit={handleSubmit} className="surface-card space-y-8 p-6 sm:p-8 lg:p-10">
       <header className="space-y-4">
-        <h2 className="font-display text-2xl font-semibold tracking-wide text-ink sm:text-3xl">
+        <p className="eyebrow-label">Commission Inquiry</p>
+        <h2 className="font-display text-2xl font-semibold tracking-[0.04em] text-ink sm:text-3xl">
           {contactPageCopy.formHeading}
         </h2>
         <p className="max-w-md font-sans text-sm leading-relaxed text-muted sm:text-base">
@@ -202,7 +203,7 @@ export function ContactForm({ introText }: ContactFormProps) {
 
       <button
         type="submit"
-        className={`inline-flex min-h-[44px] items-center justify-center bg-sage px-8 py-3 font-sans text-sm font-medium tracking-wide text-canvas transition-all duration-300 ease-out hover:bg-sage-deep hover:scale-[1.02] active:scale-[0.98] ${focusRing}`}
+        className={`button-primary ${focusRing}`}
       >
         {contactPageCopy.submitLabel}
       </button>

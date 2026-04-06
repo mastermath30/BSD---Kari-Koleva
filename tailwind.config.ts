@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: "475px",
+      },
       colors: {
         canvas: "#f7f6f3",
         ink: "#1c1b19",

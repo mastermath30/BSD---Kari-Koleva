@@ -12,8 +12,8 @@ export default function ContactPage() {
   return (
     <>
       <PageTitleBand title="Contact" />
-      <section className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-20">
+      <section className="section-shell section-rhythm">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14 2xl:gap-16">
           <ContactForm />
           <DirectContactPanel />
         </div>

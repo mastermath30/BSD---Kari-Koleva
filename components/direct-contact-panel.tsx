@@ -3,12 +3,13 @@ import { contactPageCopy } from "@/lib/contact-page-copy";
 
 export function DirectContactPanel({ className = "" }: { className?: string }) {
   return (
-    <aside className={`lg:pt-2 ${className}`.trim()}>
-      <h2 className="font-display text-2xl font-semibold tracking-wide text-ink sm:text-3xl">
+    <aside className={`surface-card p-6 sm:p-8 lg:p-10 ${className}`.trim()}>
+      <p className="eyebrow-label">Direct Details</p>
+      <h2 className="mt-2 font-display text-2xl font-semibold tracking-[0.04em] text-ink sm:text-3xl">
         {contactPageCopy.directHeading}
       </h2>
       <div className="mt-4 border-t border-ink/15" />
-      <ul className="mt-8 space-y-6 font-sans text-sm text-muted sm:text-base">
+      <ul className="mt-7 space-y-6 font-sans text-sm text-muted sm:text-base">
         <li>
           <span className="mb-1 block text-xs font-medium uppercase tracking-[0.16em] text-muted">
             Email

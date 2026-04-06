@@ -8,20 +8,21 @@ export function CommissionsResourceCards() {
         <Link
           key={item.id}
           href={item.href}
-          className="group block rounded-sm border border-ink/10 bg-canvas p-8 shadow-sm transition-all duration-300 ease-out hover:border-sage/35 hover:shadow-lg hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:p-10 lg:p-12"
+          className="surface-card surface-card-hover group block p-8 sm:p-10 lg:p-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
           title={
             item.href === "#"
               ? `${item.title} — link not configured yet`
               : undefined
           }
         >
-          <h2 className="font-display text-xl font-semibold tracking-wide text-ink sm:text-2xl">
+          <p className="eyebrow-label">Commission Resource</p>
+          <h2 className="mt-2.5 font-display text-xl font-semibold tracking-[0.04em] text-ink sm:text-2xl">
             {item.title}
           </h2>
-          <p className="mt-4 font-sans text-sm leading-relaxed text-muted sm:text-base">
+          <p className="copy-readable mt-4">
             {item.description}
           </p>
-          <span className="mt-8 inline-block font-sans text-xs font-medium uppercase tracking-[0.18em] text-sage transition-all duration-300 ease-out group-hover:text-sage-deep group-hover:translate-x-1">
+          <span className="mt-7 inline-block font-sans text-xs font-medium uppercase tracking-[0.16em] text-sage transition-all duration-300 ease-out group-hover:text-sage-deep group-hover:translate-x-1">
             View resource
           </span>
         </Link>

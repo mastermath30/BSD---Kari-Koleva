@@ -9,6 +9,51 @@
   body {
     @apply bg-canvas text-ink antialiased;
   }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .section-shell {
+    @apply mx-auto max-w-6xl px-4 xs:px-5 sm:px-6 lg:px-8 2xl:px-10;
+  }
+
+  .section-rhythm {
+    @apply py-12 sm:py-14 lg:py-16 2xl:py-20;
+  }
+
+  .section-rhythm-tight {
+    @apply py-10 sm:py-12 lg:py-14;
+  }
+
+  .surface-card {
+    @apply rounded-sm border border-ink/10 bg-canvas shadow-[0_8px_24px_-14px_rgba(17,24,39,0.22)] transition-all duration-300 ease-out;
+  }
+
+  .surface-card-hover {
+    @apply hover:-translate-y-0.5 hover:border-sage/35 hover:shadow-[0_16px_38px_-20px_rgba(17,24,39,0.28)];
+  }
+
+  .eyebrow-label {
+    @apply font-sans text-[0.675rem] font-medium uppercase tracking-[0.18em] text-muted/90;
+  }
+
+  .copy-readable {
+    @apply font-sans text-sm leading-relaxed text-muted sm:text-base;
+  }
+
+  .button-primary {
+    @apply inline-flex min-h-[44px] items-center justify-center rounded-sm border border-sage bg-sage px-8 py-3 font-sans text-sm font-medium tracking-wide text-canvas transition-all duration-300 ease-out hover:border-sage-deep hover:bg-sage-deep hover:translate-y-[-1px] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/45 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas;
+  }
 }
 
 /* Homepage horizontal gallery — thin scrollbar; horizontal pan on touch */

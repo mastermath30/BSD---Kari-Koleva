@@ -9,7 +9,7 @@ import { siteConfig } from "@/lib/site-config";
 
 function navLinkClassName(active: boolean) {
   const base =
-    "relative rounded-sm text-sm font-medium tracking-wide transition-all duration-300 ease-out after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-left after:bg-sage after:transition-all after:duration-300 after:ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas";
+    "relative rounded-sm px-0.5 py-1 text-[0.8rem] font-medium uppercase tracking-[0.09em] transition-all duration-300 ease-out after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:bg-sage after:transition-all after:duration-300 after:ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas";
   if (active) {
     return `${base} text-ink after:scale-x-100`;
   }
@@ -35,17 +35,17 @@ export function SiteHeader() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink/5 bg-canvas/85 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-3 py-3 sm:px-4 sm:py-4 md:px-5 md:py-5 lg:px-8 lg:py-5 xl:px-10 xl:py-5">
+    <header className="sticky top-0 z-50 border-b border-ink/10 bg-canvas/90 backdrop-blur-md">
+      <div className="section-shell flex items-center justify-between gap-4 py-3 sm:py-4 lg:py-5">
         <Link
           href="/"
-          className="font-display text-lg font-semibold uppercase tracking-[0.14em] text-ink transition-all duration-300 ease-out hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:text-xl md:text-2xl lg:text-3xl"
+          className="font-display text-lg font-semibold uppercase tracking-[0.12em] text-ink transition-all duration-300 ease-out hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:text-xl md:text-2xl lg:text-3xl"
         >
           {siteConfig.artistName}
         </Link>
 
         <nav
-          className="hidden items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-7 md:flex"
+          className="hidden items-center gap-4 lg:gap-6 xl:gap-7 md:flex"
           aria-label="Primary"
         >
           {siteConfig.nav.map((item) => (
@@ -83,7 +83,7 @@ export function SiteHeader() {
             className="border-t border-ink/5 bg-canvas md:hidden"
           >
             <nav
-              className="mx-auto flex max-w-6xl flex-col gap-1 px-3 py-2 sm:px-4 sm:py-3 md:px-5 md:py-4 lg:px-8 lg:py-5 xl:px-10 xl:py-5"
+              className="section-shell mx-auto flex max-w-6xl flex-col gap-1 py-2 sm:py-3 md:py-4 lg:py-5"
               aria-label="Mobile primary"
             >
               {siteConfig.nav.map((item, i) => {
