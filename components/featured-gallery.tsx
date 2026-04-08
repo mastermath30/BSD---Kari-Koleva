@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { featuredArtworks } from "@/lib/featured-art";
+import { homeCopy } from "@/lib/copy";
 
 export function FeaturedGallery() {
   const scrollerRef = useRef<HTMLDivElement>(null);
@@ -62,14 +64,25 @@ export function FeaturedGallery() {
       className="scroll-mt-28 border-b border-ink/[0.05] bg-canvas"
     >
       <div className="section-shell section-rhythm-tight">
-        <div className="mb-6 text-center sm:mb-8">
-          <p className="eyebrow-label">Featured Work</p>
-          <h2
+        <div className="mb-6 text-center sm:mb-10">
+          <p className="eyebrow-label">Animal Portraits</p>
+          <h1
             id="featured-heading"
-            className="mt-2 font-display text-3xl font-semibold tracking-[0.06em] text-ink sm:text-4xl"
+            className="mt-3 font-display text-4xl font-semibold tracking-[0.06em] text-ink sm:text-5xl lg:text-6xl"
           >
-            Animal Portrait Collection
-          </h2>
+            {homeCopy.heroTitle}
+          </h1>
+          <p className="mx-auto mt-5 max-w-2xl font-sans text-sm leading-relaxed text-muted sm:text-base">
+            {homeCopy.heroSubtitle}
+          </p>
+          <div className="mt-7">
+            <Link
+              href={homeCopy.heroCTAHref}
+              className="button-primary"
+            >
+              {homeCopy.heroCTALabel}
+            </Link>
+          </div>
         </div>
 
         <motion.div

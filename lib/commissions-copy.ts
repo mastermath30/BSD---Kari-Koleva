@@ -1,9 +1,15 @@
-/** Commissions page (/commissions) — replace with final copy when ready. */
+/** Commissions page (/commissions) — all copy and status flags. */
 export const commissionsCopy = {
   titleBandSubtitle:
-    "A calm, collaborative process for custom animal portraiture—from first questions to finished work.",
+    "Custom animal portraiture by Kari Koleva — pricing, the process, and how to order.",
+
+  /** Set to true to display the "Commissions closed" banner. */
+  commissionsOpen: false,
+  closedNotice: "Commissions are currently closed.",
+
   intro:
-    "If you are considering a commission, the guides below outline pricing structure and how to photograph references. When you are ready, reach out through the form or direct contact.",
+    "Please read all the information below before commissioning. If you have questions after reading, feel free to get in touch using the form.",
+
   formIntro:
     "Share a few details about your commission, timeline, and reference images. Kari will follow up by email.",
 } as const;

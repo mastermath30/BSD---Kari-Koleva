@@ -1,11 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useId, useRef, useState } from "react";
 import { contactPageCopy } from "@/lib/contact-page-copy";
 
 type ContactFormProps = {
   /** Override default intro paragraph (e.g. on /commissions). */
   introText?: string;
+  /** Show the commissions-page note with link (used on /contact). */
+  showCommissionsNote?: boolean;
 };
 
 const focusRing =
@@ -15,7 +18,7 @@ const focusRing =
  * Client-side validation only. There is no server endpoint — see `noBackendNotice` after a valid submit.
  * TODO: Connect `onSubmit` to an API route, server action, Formspree, Resend, etc.
  */
-export function ContactForm({ introText }: ContactFormProps) {
+export function ContactForm({ introText, showCommissionsNote }: ContactFormProps) {
   const formId = useId();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [filesSummary, setFilesSummary] = useState<string | null>(null);
@@ -56,16 +59,29 @@ export function ContactForm({ introText }: ContactFormProps) {
   return (
     <form onSubmit={handleSubmit} className="surface-card space-y-8 p-6 sm:p-8 lg:p-10">
       <header className="space-y-4">
-        <p className="eyebrow-label">Commission Inquiry</p>
+        <p className="eyebrow-label">Get in Touch</p>
         <h2 className="font-display text-2xl font-semibold tracking-[0.04em] text-ink sm:text-3xl">
           {contactPageCopy.formHeading}
         </h2>
         <p className="max-w-md font-sans text-sm leading-relaxed text-muted sm:text-base">
           {introText ?? contactPageCopy.formIntro}
         </p>
+        {showCommissionsNote ? (
+          <p className="max-w-md font-sans text-sm leading-relaxed text-muted sm:text-base">
+            {/* Split the note so the link can be inline */}
+            For commissions, please share details about your pet and any specific requests.{" "}
+            <Link
+              href="/commissions"
+              className="font-medium text-ink underline-offset-2 hover:underline transition-colors duration-200"
+            >
+              More info on the commissions page.
+            </Link>
+          </p>
+        ) : null}
       </header>
 
       <div className="space-y-6">
+        {/* Name */}
         <div>
           <label htmlFor={`${formId}-name`} className="sr-only">
             {contactPageCopy.fields.name}
@@ -82,6 +98,8 @@ export function ContactForm({ introText }: ContactFormProps) {
             onInput={clearNotice}
           />
         </div>
+
+        {/* Email */}
         <div>
           <label htmlFor={`${formId}-email`} className="sr-only">
             {contactPageCopy.fields.email}
@@ -99,6 +117,28 @@ export function ContactForm({ introText }: ContactFormProps) {
           />
         </div>
 
+        {/* Reason for contact */}
+        <div>
+          <label htmlFor={`${formId}-reason`} className="sr-only">
+            {contactPageCopy.fields.reason}
+          </label>
+          <select
+            id={`${formId}-reason`}
+            name="reason"
+            required
+            defaultValue=""
+            className={`${fieldClass} cursor-pointer appearance-none`}
+            onChange={clearNotice}
+          >
+            {contactPageCopy.fields.reasonOptions.map((opt) => (
+              <option key={opt.value} value={opt.value} disabled={opt.value === ""}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Image upload */}
         <div>
           <p
             id={uploadHintId}
@@ -118,7 +158,7 @@ export function ContactForm({ introText }: ContactFormProps) {
             multiple
             className="sr-only"
             aria-describedby={uploadHintId}
-            onChange={(ev) => {
+            onChange={() => {
               clearNotice();
               onFilesChange();
             }}
@@ -174,6 +214,7 @@ export function ContactForm({ introText }: ContactFormProps) {
           </label>
         </div>
 
+        {/* Message */}
         <div>
           <label htmlFor={`${formId}-message`} className="sr-only">
             {contactPageCopy.fields.message}
@@ -201,10 +242,7 @@ export function ContactForm({ introText }: ContactFormProps) {
         </p>
       ) : null}
 
-      <button
-        type="submit"
-        className={`button-primary ${focusRing}`}
-      >
+      <button type="submit" className={`button-primary ${focusRing}`}>
         {contactPageCopy.submitLabel}
       </button>
     </form>

@@ -14,7 +14,7 @@ export default function ContactPage() {
       <PageTitleBand title="Contact" />
       <section className="section-shell section-rhythm">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14 2xl:gap-16">
-          <ContactForm />
+          <ContactForm showCommissionsNote />
           <DirectContactPanel />
         </div>
       </section>

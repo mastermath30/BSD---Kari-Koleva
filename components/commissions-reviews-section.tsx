@@ -37,16 +37,13 @@ export function CommissionsReviewsSection() {
       aria-labelledby="reviews-heading"
     >
       <div className="section-shell section-rhythm">
-        <p className="eyebrow-label">Social Proof</p>
+        <p className="eyebrow-label">Client Reviews</p>
         <h2
           id="reviews-heading"
           className="mt-2 font-display text-2xl font-semibold tracking-[0.04em] text-ink sm:text-3xl"
         >
           Reviews
         </h2>
-        <p className="mt-2 max-w-xl font-sans text-sm leading-relaxed text-muted">
-          Sample layout — replace with real reviews when available.
-        </p>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,240px)_1fr] lg:gap-14">
           <div className="surface-card p-6 sm:p-7 lg:p-8 space-y-6">
@@ -57,7 +54,7 @@ export function CommissionsReviewsSection() {
               <span className="pb-1 font-sans text-sm text-muted">/ 5</span>
             </div>
             <RatingStars value={4.9} />
-            <p className="font-sans text-xs text-muted">Overall rating (sample)</p>
+            <p className="font-sans text-xs text-muted">Overall rating</p>
 
             <div
               className="space-y-3 pt-6"

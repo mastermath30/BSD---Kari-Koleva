@@ -1,23 +1,30 @@
 import type { Metadata } from "next";
 import { PageTitleBand } from "@/components/page-title-band";
+import { CommissionsClosedBanner } from "@/components/commissions-closed-banner";
+import { CommissionsHowToOrder } from "@/components/commissions-how-to-order";
+import { PriceList } from "@/components/price-list";
+import { CustomizationOptions } from "@/components/customization-options";
+import { PhotoTips } from "@/components/photo-tips";
 import { ContactForm } from "@/components/contact-form";
 import { DirectContactPanel } from "@/components/direct-contact-panel";
-import { CommissionsResourceCards } from "@/components/commissions-resource-cards";
 import { CommissionsReviewsSection } from "@/components/commissions-reviews-section";
 import { commissionsCopy } from "@/lib/commissions-copy";
 
 export const metadata: Metadata = {
   title: "Commissions",
-  description: "Commission guides, pricing resources, and inquiry form for Kari Koleva.",
+  description:
+    "Custom pet portrait commissions by Kari Koleva — pricing, process, and how to order.",
 };
 
 export default function CommissionsPage() {
   return (
     <>
       <PageTitleBand
-        title="Commissions"
+        title="Pet & Animal Portraits by Kari Koleva"
         subtitle={commissionsCopy.titleBandSubtitle}
       />
+
+      <CommissionsClosedBanner />
 
       <section className="section-shell py-8 text-center sm:py-10 lg:py-12">
         <p className="mx-auto max-w-2xl font-sans text-sm leading-relaxed text-muted sm:text-base">
@@ -25,9 +32,13 @@ export default function CommissionsPage() {
         </p>
       </section>
 
-      <section className="section-shell pb-10 sm:pb-12 lg:pb-16 2xl:pb-20">
-        <CommissionsResourceCards />
-      </section>
+      <CommissionsHowToOrder />
+
+      <PriceList />
+
+      <CustomizationOptions />
+
+      <PhotoTips />
 
       <section className="border-t border-ink/[0.06] bg-canvas">
         <div className="section-shell section-rhythm">
