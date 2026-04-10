@@ -8,8 +8,8 @@ export function SiteFooter() {
       id="site-footer"
       className="scroll-mt-28 bg-sage-footer text-canvas/95"
     >
-      <div className="section-shell py-14 sm:py-16 lg:py-20">
-        <div className="border-t border-canvas/15 pt-8 sm:pt-10 lg:pt-12">
+      <div className="section-shell py-16 sm:py-18 lg:py-20">
+        <div className="border-t border-canvas/[0.12] pt-10 sm:pt-12 lg:pt-14">
           <div className="grid grid-cols-1 gap-10 sm:gap-12 lg:grid-cols-[1fr_auto_1fr] lg:items-start lg:gap-12">
             <div className="space-y-2.5">
               <p className="font-display text-lg font-medium tracking-[0.06em] text-canvas sm:text-xl">

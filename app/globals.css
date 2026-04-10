@@ -28,46 +28,67 @@
   }
 
   .section-rhythm {
-    @apply py-12 sm:py-14 lg:py-16 2xl:py-20;
+    @apply py-14 sm:py-16 lg:py-20 2xl:py-24;
   }
 
   .section-rhythm-tight {
-    @apply py-10 sm:py-12 lg:py-14;
+    @apply py-12 sm:py-14 lg:py-16;
   }
 
   .surface-card {
-    @apply rounded-sm border border-ink/10 bg-canvas shadow-[0_8px_24px_-14px_rgba(17,24,39,0.22)] transition-all duration-300 ease-out;
+    @apply rounded-sm border border-ink/[0.08] bg-canvas shadow-[0_8px_32px_-12px_rgba(17,24,39,0.18)] transition-all duration-300 ease-out;
   }
 
   .surface-card-hover {
-    @apply hover:-translate-y-0.5 hover:border-sage/35 hover:shadow-[0_16px_38px_-20px_rgba(17,24,39,0.28)];
+    @apply hover:-translate-y-1 hover:border-sage/40 hover:shadow-[0_20px_48px_-18px_rgba(17,24,39,0.26)];
   }
 
   .eyebrow-label {
-    @apply font-sans text-[0.675rem] font-medium uppercase tracking-[0.18em] text-muted/90;
+    @apply font-sans text-[0.675rem] font-medium uppercase tracking-[0.22em] text-muted/75;
   }
 
   .copy-readable {
     @apply font-sans text-sm leading-relaxed text-muted sm:text-base;
   }
 
+  /* Premium artwork frame — multi-layer shadow for gallery-light effect */
+  .artwork-frame {
+    @apply ring-1 ring-ink/[0.07] shadow-[0_12px_40px_-16px_rgba(17,24,39,0.22),0_2px_8px_-4px_rgba(17,24,39,0.08)] transition-all duration-500 ease-out;
+  }
+
+  .artwork-frame-hover {
+    @apply group-hover:ring-sage/25 group-hover:shadow-[0_24px_56px_-18px_rgba(17,24,39,0.32),0_4px_16px_-6px_rgba(17,24,39,0.12)];
+  }
+
   .button-primary {
-    @apply inline-flex min-h-[44px] items-center justify-center rounded-sm border border-sage bg-sage px-8 py-3 font-sans text-sm font-medium tracking-wide text-canvas transition-all duration-300 ease-out hover:border-sage-deep hover:bg-sage-deep hover:translate-y-[-1px] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/45 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas;
+    @apply inline-flex min-h-[44px] items-center justify-center rounded-sm border border-sage bg-sage px-8 py-3 font-sans text-sm font-medium tracking-[0.06em] text-canvas transition-all duration-300 ease-out hover:border-sage-deep hover:bg-sage-deep hover:translate-y-[-2px] hover:shadow-[0_8px_24px_-8px_rgba(90,99,85,0.45)] active:translate-y-0 active:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/45 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas;
+  }
+
+  /* Gallery edge fade — apply as wrapper to create depth-of-field scroll affordance */
+  .gallery-edge-fade {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 3.5%,
+      black 96.5%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 3.5%,
+      black 96.5%,
+      transparent 100%
+    );
   }
 }
 
 /* Homepage horizontal gallery — thin scrollbar; horizontal pan on touch */
 .featured-scroll {
   touch-action: pan-x;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(90, 99, 85, 0.35) transparent;
+  scrollbar-width: none;
 }
 
 .featured-scroll::-webkit-scrollbar {
-  height: 6px;
-}
-
-.featured-scroll::-webkit-scrollbar-thumb {
-  background-color: rgba(90, 99, 85, 0.35);
-  border-radius: 999px;
+  display: none;
 }

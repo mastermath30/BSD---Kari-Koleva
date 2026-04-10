@@ -14,21 +14,21 @@ export function AboutSection() {
       className="scroll-mt-28 border-t border-ink/[0.06] bg-canvas"
     >
       <div className="section-shell section-rhythm">
-        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
           {/* Photo column */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="order-2 lg:order-1"
           >
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm shadow-[0_18px_40px_-22px_rgba(17,24,39,0.28)] ring-1 ring-ink/10">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm artwork-frame">
               <Image
                 src={aboutPageImage.src}
                 alt={aboutPageImage.alt}
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out hover:scale-[1.02]"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
@@ -36,30 +36,30 @@ export function AboutSection() {
 
           {/* Text column */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
-            className="order-1 space-y-6 lg:order-2"
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+            className="order-1 space-y-7 lg:order-2"
           >
             <p className="eyebrow-label">The Artist</p>
             <h2
               id="about-heading"
-              className="font-display text-3xl font-semibold tracking-[0.06em] text-ink sm:text-4xl"
+              className="font-display text-3xl font-semibold tracking-[0.07em] text-ink sm:text-4xl lg:text-[2.35rem]"
             >
               {homeCopy.meetTitle}
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-5">
               {homeCopy.meetBody.split("\n\n").map((para, i) => (
                 <p
                   key={i}
-                  className="font-sans text-base leading-relaxed text-muted sm:text-lg"
+                  className="font-sans text-base leading-[1.85] text-muted sm:text-lg"
                 >
                   {para}
                 </p>
               ))}
             </div>
-            <div className="pt-2">
+            <div className="pt-1">
               <Link href={homeCopy.meetCTAHref} className="button-primary">
                 {homeCopy.meetCTALabel}
               </Link>

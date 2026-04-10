@@ -1,16 +1,31 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import {
   reviewPlaceholders,
   reviewsSummary,
 } from "@/lib/commissions-reviews-data";
 
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+};
+
+const itemVariant = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
 function StarRow({ filled }: { filled: boolean }) {
   return (
     <Star
       className={`h-4 w-4 sm:h-[1.125rem] sm:w-[1.125rem] ${
-        filled
-          ? "fill-sage/90 text-sage"
-          : "fill-sage/25 text-sage/35"
+        filled ? "fill-sage/90 text-sage" : "fill-sage/20 text-sage/30"
       }`}
       strokeWidth={1.25}
       aria-hidden
@@ -37,29 +52,45 @@ export function CommissionsReviewsSection() {
       aria-labelledby="reviews-heading"
     >
       <div className="section-shell section-rhythm">
-        <p className="eyebrow-label">Client Reviews</p>
-        <h2
-          id="reviews-heading"
-          className="mt-2 font-display text-2xl font-semibold tracking-[0.04em] text-ink sm:text-3xl"
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          Reviews
-        </h2>
+          <p className="eyebrow-label">Client Reviews</p>
+          <h2
+            id="reviews-heading"
+            className="mt-3 font-display text-3xl font-semibold tracking-[0.06em] text-ink sm:text-4xl"
+          >
+            What clients say
+          </h2>
+        </motion.div>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,240px)_1fr] lg:gap-14">
-          <div className="surface-card p-6 sm:p-7 lg:p-8 space-y-6">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
+          className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,240px)_1fr] lg:gap-14"
+        >
+          {/* Rating summary card */}
+          <motion.div
+            variants={itemVariant}
+            className="surface-card p-6 sm:p-7 lg:p-8 space-y-6"
+          >
             <div className="flex items-end gap-3">
-              <span className="font-display text-4xl font-semibold text-ink">
+              <span className="font-display text-5xl font-semibold tracking-[-0.02em] text-ink">
                 {reviewsSummary.averageLabel}
               </span>
-              <span className="pb-1 font-sans text-sm text-muted">/ 5</span>
+              <span className="pb-1.5 font-sans text-sm text-muted">/ 5</span>
             </div>
             <RatingStars value={4.9} />
-            <p className="font-sans text-xs text-muted">Overall rating</p>
+            <p className="font-sans text-[0.7rem] uppercase tracking-[0.18em] text-muted/70">
+              Overall rating
+            </p>
 
-            <div
-              className="space-y-3 pt-6"
-              aria-label="Sample star distribution"
-            >
+            <div className="space-y-3 border-t border-ink/[0.06] pt-6" aria-label="Sample star distribution">
               {reviewsSummary.distribution.map((row) => (
                 <div
                   key={row.stars}
@@ -68,27 +99,33 @@ export function CommissionsReviewsSection() {
                   <span className="font-sans text-xs tabular-nums text-muted">
                     {row.stars}★
                   </span>
-                  <div className="h-1.5 overflow-hidden rounded-full bg-ink/[0.06]">
+                  <div className="h-1 overflow-hidden rounded-full bg-ink/[0.06]">
                     <div
-                      className="h-full rounded-full bg-sage/45 transition-all"
+                      className="h-full rounded-full bg-sage/50 transition-all duration-700"
                       style={{ width: `${row.percent}%` }}
                     />
                   </div>
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          <ul className="surface-card divide-y divide-ink/[0.06] p-6 sm:p-7 lg:p-8">
+          {/* Review cards */}
+          <motion.ul
+            variants={containerVariants}
+            className="surface-card divide-y divide-ink/[0.05] p-6 sm:p-7 lg:p-8"
+          >
             {reviewPlaceholders.map((rev) => (
-              <li
+              <motion.li
                 key={rev.id}
-                className="py-8 first:pt-0 last:pb-0"
+                variants={itemVariant}
+                className="py-9 first:pt-0 last:pb-0"
               >
-                <blockquote className="font-sans text-base leading-relaxed text-ink/90">
-                  “{rev.quote}”
+                {/* Pull-quote in display font */}
+                <blockquote className="font-display text-lg font-medium italic leading-[1.7] tracking-[0.02em] text-ink/85 sm:text-xl">
+                  &ldquo;{rev.quote}&rdquo;
                 </blockquote>
-                <p className="mt-4 font-sans text-xs font-medium uppercase tracking-[0.16em] text-muted">
+                <p className="mt-4 font-sans text-[0.65rem] font-medium uppercase tracking-[0.22em] text-muted/70">
                   {rev.attribution}
                 </p>
                 {rev.imageSlots > 0 ? (
@@ -96,16 +133,16 @@ export function CommissionsReviewsSection() {
                     {Array.from({ length: rev.imageSlots }).map((_, i) => (
                       <div
                         key={i}
-                        className="h-14 w-14 shrink-0 rounded-sm bg-ink/[0.05] ring-1 ring-ink/[0.06]"
+                        className="h-14 w-14 shrink-0 rounded-sm bg-ink/[0.04] ring-1 ring-ink/[0.06]"
                         aria-hidden
                       />
                     ))}
                   </div>
                 ) : null}
-              </li>
+              </motion.li>
             ))}
-          </ul>
-        </div>
+          </motion.ul>
+        </motion.div>
       </div>
     </section>
   );
