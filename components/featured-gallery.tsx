@@ -63,7 +63,7 @@ export function FeaturedGallery() {
       aria-labelledby="featured-heading"
       className="scroll-mt-28 border-b border-ink/[0.05] bg-canvas"
     >
-      <div className="section-shell section-rhythm-tight">
+      <div className="section-shell pt-10 sm:pt-12 lg:pt-14">
         <div className="mb-6 text-center sm:mb-10">
           <p className="eyebrow-label">Animal Portraits</p>
           <h1
@@ -96,7 +96,7 @@ export function FeaturedGallery() {
             tabIndex={0}
             role="region"
             aria-label="Featured artwork gallery. Scroll horizontally."
-            className="featured-scroll flex snap-x snap-mandatory overflow-x-auto overflow-y-hidden scroll-smooth px-1 pb-4 xs:px-1.5 sm:px-2 lg:px-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+            className="featured-scroll flex snap-x snap-mandatory overflow-x-auto overflow-y-hidden scroll-smooth px-1 xs:px-1.5 sm:px-2 lg:px-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
           >
             {featuredArtworks.map((artwork, i) => (
               <div

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { PageTitleBand } from "@/components/page-title-band";
-import { CommissionsClosedBanner } from "@/components/commissions-closed-banner";
 import { CommissionsHowToOrder } from "@/components/commissions-how-to-order";
 import { PriceList } from "@/components/price-list";
 import { CustomizationOptions } from "@/components/customization-options";
@@ -24,8 +23,6 @@ export default function CommissionsPage() {
         subtitle={commissionsCopy.titleBandSubtitle}
       />
 
-      <CommissionsClosedBanner />
-
       <section className="section-shell py-8 text-center sm:py-10 lg:py-12">
         <p className="mx-auto max-w-2xl font-sans text-sm leading-relaxed text-muted sm:text-base">
           {commissionsCopy.intro}
@@ -42,7 +39,7 @@ export default function CommissionsPage() {
 
       <section className="border-t border-ink/[0.06] bg-canvas">
         <div className="section-shell section-rhythm">
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14 2xl:gap-16">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[2fr_1fr] lg:gap-14 2xl:gap-16 lg:items-start">
             <ContactForm introText={commissionsCopy.formIntro} />
             <DirectContactPanel />
           </div>
