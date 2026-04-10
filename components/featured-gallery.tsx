@@ -100,42 +100,6 @@ export function FeaturedGallery() {
       aria-labelledby="featured-heading"
       className="scroll-mt-28 border-b border-ink/[0.05] bg-canvas"
     >
-<<<<<<< HEAD
-      <div className="section-shell pt-10 sm:pt-12 lg:pt-14">
-        <div className="mb-6 text-center sm:mb-10">
-          <p className="eyebrow-label">Animal Portraits</p>
-          <h1
-            id="featured-heading"
-            className="mt-3 font-display text-4xl font-semibold tracking-[0.06em] text-ink sm:text-5xl lg:text-6xl"
-          >
-            {homeCopy.heroTitle}
-          </h1>
-          <p className="mx-auto mt-5 max-w-2xl font-sans text-sm leading-relaxed text-muted sm:text-base">
-            {homeCopy.heroSubtitle}
-          </p>
-          <div className="mt-7">
-            <Link
-              href={homeCopy.heroCTAHref}
-              className="button-primary"
-            >
-              {homeCopy.heroCTALabel}
-            </Link>
-          </div>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="relative left-1/2 w-screen -translate-x-1/2"
-        >
-          <div
-            ref={scrollerRef}
-            tabIndex={0}
-            role="region"
-            aria-label="Featured artwork gallery. Scroll horizontally."
-            className="featured-scroll flex snap-x snap-mandatory overflow-x-auto overflow-y-hidden scroll-smooth px-1 xs:px-1.5 sm:px-2 lg:px-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
-=======
       {/* Subtle ambient depth behind hero copy */}
       <div className="relative overflow-hidden">
         <div
@@ -154,7 +118,6 @@ export function FeaturedGallery() {
             initial="hidden"
             animate="visible"
             className="mb-10 text-center sm:mb-14"
->>>>>>> aee7ae3 (changes)
           >
             <motion.p variants={heroItem} className="eyebrow-label">
               Animal Portraits
