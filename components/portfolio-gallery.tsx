@@ -30,16 +30,15 @@ export function PortfolioGallery() {
             transition={{ delay: Math.min(i * 0.05, 0.3) }}
             className="group break-inside-avoid"
           >
-            <div
-              className={`relative w-full overflow-hidden rounded-sm artwork-frame artwork-frame-hover transition-all duration-500 ease-out group-hover:-translate-y-1 ${item.frameClass}`}
-            >
+            <div className="overflow-hidden rounded-sm artwork-frame artwork-frame-hover transition-all duration-500 ease-out group-hover:-translate-y-1">
               <Image
                 src={item.src}
                 alt={item.alt}
-                fill
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                width={0}
+                height={0}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 quality={90}
+                className="w-full h-auto transition-transform duration-700 ease-out group-hover:scale-[1.03]"
               />
             </div>
           </motion.figure>

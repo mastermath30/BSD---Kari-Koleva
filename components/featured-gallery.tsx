@@ -3,9 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { featuredArtworks } from "@/lib/featured-art";
 import { homeCopy } from "@/lib/copy";
+
+// Triple the items so we can silently reposition to the middle set for seamless looping
+const n = featuredArtworks.length;
+const extendedArtworks = [
+  ...featuredArtworks,
+  ...featuredArtworks,
+  ...featuredArtworks,
+];
 
 const heroVariants = {
   hidden: {},
@@ -39,8 +48,19 @@ const galleryItemVariant = {
 export function FeaturedGallery() {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const itemElsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const [focusedIndex, setFocusedIndex] = useState(0);
-  const [hasScrolled, setHasScrolled] = useState(false);
+  // Start focused on the first item of the middle set
+  const [focusedIndex, setFocusedIndex] = useState(n);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const repositionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Logical index (0 to n-1) used for visual state and dots
+  const activeIndex = (hoveredIndex ?? focusedIndex) % n;
+
+  const scrollToIndex = useCallback((i: number, behavior: ScrollBehavior = "smooth") => {
+    const el = itemElsRef.current[i];
+    if (!el) return;
+    el.scrollIntoView({ behavior, block: "nearest", inline: "center" });
+  }, []);
 
   const updateFocused = useCallback(() => {
     const root = scrollerRef.current;
@@ -60,8 +80,27 @@ export function FeaturedGallery() {
       }
     });
     setFocusedIndex(best);
-    if (!hasScrolled && root.scrollLeft > 4) setHasScrolled(true);
-  }, [hasScrolled]);
+
+    // After scroll settles, silently jump to the middle-set equivalent so
+    // there's always room to scroll in both directions
+    if (repositionTimer.current) clearTimeout(repositionTimer.current);
+    repositionTimer.current = setTimeout(() => {
+      if (best < n) {
+        const target = best + n;
+        itemElsRef.current[target]?.scrollIntoView({ behavior: "instant", block: "nearest", inline: "center" });
+        setFocusedIndex(target);
+      } else if (best >= 2 * n) {
+        const target = best - n;
+        itemElsRef.current[target]?.scrollIntoView({ behavior: "instant", block: "nearest", inline: "center" });
+        setFocusedIndex(target);
+      }
+    }, 150);
+  }, []);
+
+  // Initialize scroll position to the middle set on mount
+  useEffect(() => {
+    scrollToIndex(n, "instant");
+  }, [scrollToIndex]);
 
   useEffect(() => {
     const root = scrollerRef.current;
@@ -75,24 +114,30 @@ export function FeaturedGallery() {
     };
   }, [updateFocused]);
 
-  /** Vertical wheel → horizontal scroll; must be non-passive so preventDefault works. */
+  // Dynamically set paddingInline so every item can snap to center
   useEffect(() => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    const onWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-      el.scrollLeft += e.deltaY;
-      e.preventDefault();
+    const root = scrollerRef.current;
+    const firstItem = itemElsRef.current[0];
+    if (!root || !firstItem) return;
+    const update = () => {
+      const pad = Math.max(0, (root.clientWidth - firstItem.clientWidth) / 2);
+      root.style.paddingInline = `${pad}px`;
     };
-    el.addEventListener("wheel", onWheel, { passive: false });
-    return () => el.removeEventListener("wheel", onWheel);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(root);
+    return () => ro.disconnect();
   }, []);
 
-  const scrollToIndex = useCallback((i: number) => {
-    const el = itemElsRef.current[i];
-    if (!el) return;
-    el.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
-  }, []);
+  // No wrap-around logic needed — we just step ±1 and the reposition
+  // timer handles restoring the middle-set position seamlessly
+  const scrollPrev = useCallback(() => {
+    scrollToIndex(focusedIndex - 1);
+  }, [focusedIndex, scrollToIndex]);
+
+  const scrollNext = useCallback(() => {
+    scrollToIndex(focusedIndex + 1);
+  }, [focusedIndex, scrollToIndex]);
 
   return (
     <section
@@ -152,6 +197,22 @@ export function FeaturedGallery() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
             className="relative left-1/2 w-screen -translate-x-1/2"
           >
+            {/* Prev / Next buttons */}
+            <button
+              onClick={scrollPrev}
+              aria-label="Previous artwork"
+              className="absolute left-3 top-1/2 z-10 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-canvas/80 shadow-md ring-1 ring-ink/10 backdrop-blur-sm transition-all duration-200 hover:bg-canvas hover:shadow-lg hover:ring-ink/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/50 sm:left-5 sm:h-10 sm:w-10"
+            >
+              <ChevronLeft className="h-4 w-4 text-ink sm:h-5 sm:w-5" />
+            </button>
+            <button
+              onClick={scrollNext}
+              aria-label="Next artwork"
+              className="absolute right-3 top-1/2 z-10 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-canvas/80 shadow-md ring-1 ring-ink/10 backdrop-blur-sm transition-all duration-200 hover:bg-canvas hover:shadow-lg hover:ring-ink/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/50 sm:right-5 sm:h-10 sm:w-10"
+            >
+              <ChevronRight className="h-4 w-4 text-ink sm:h-5 sm:w-5" />
+            </button>
+
             {/* Edge-fade affordance */}
             <div className="gallery-edge-fade">
               <motion.div
@@ -162,27 +223,29 @@ export function FeaturedGallery() {
                 tabIndex={0}
                 role="region"
                 aria-label="Featured artwork gallery. Scroll horizontally."
-                className="featured-scroll flex snap-x snap-mandatory overflow-x-auto overflow-y-hidden scroll-smooth px-[5vw] pb-5 sm:px-[6vw] lg:px-[7vw] focus:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+                className="featured-scroll flex snap-x snap-mandatory overflow-x-auto overflow-y-hidden scroll-smooth pb-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
               >
-                {featuredArtworks.map((artwork, i) => (
+                {extendedArtworks.map((artwork, i) => (
                   <motion.div
-                    key={artwork.id}
+                    key={`${artwork.id}-${Math.floor(i / n)}`}
                     variants={galleryItemVariant}
                     ref={(node) => {
                       itemElsRef.current[i] = node;
                     }}
                     className="snap-center shrink-0 px-1.5 xs:px-2 sm:px-2.5 lg:px-3"
+                    onMouseEnter={() => setHoveredIndex(i % n)}
+                    onMouseLeave={() => setHoveredIndex(null)}
                   >
                     <article
                       className={`group relative origin-center transition-all duration-700 ease-out ${
-                        focusedIndex === i
+                        activeIndex === i % n
                           ? "scale-[1.045] opacity-100"
                           : "scale-[0.96] opacity-[0.72]"
                       }`}
                     >
                       <div
                         className={`relative overflow-hidden rounded-sm transition-all duration-700 ease-out ${
-                          focusedIndex === i
+                          activeIndex === i % n
                             ? "shadow-[0_30px_70px_-18px_rgba(0,0,0,0.32),0_4px_16px_-6px_rgba(0,0,0,0.12)] ring-1 ring-sage/35"
                             : "shadow-[0_12px_32px_-10px_rgba(0,0,0,0.14)] ring-1 ring-ink/[0.05]"
                         }`}
@@ -194,7 +257,7 @@ export function FeaturedGallery() {
                             fill
                             className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]"
                             sizes="(max-width: 768px) 88vw, 36vw"
-                            priority={i < 3}
+                            priority={i >= n && i < n + 3}
                             quality={95}
                           />
                         </div>
@@ -205,7 +268,7 @@ export function FeaturedGallery() {
               </motion.div>
             </div>
 
-            {/* Scroll indicator dots */}
+            {/* Scroll indicator dots — always n dots, keyed to logical index */}
             <div
               role="tablist"
               aria-label="Gallery position"
@@ -215,11 +278,11 @@ export function FeaturedGallery() {
                 <button
                   key={i}
                   role="tab"
-                  aria-selected={focusedIndex === i}
+                  aria-selected={activeIndex === i}
                   aria-label={`View artwork ${i + 1}`}
-                  onClick={() => scrollToIndex(i)}
+                  onClick={() => scrollToIndex(n + i)}
                   className={`rounded-full transition-all duration-400 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas ${
-                    focusedIndex === i
+                    activeIndex === i
                       ? "h-1.5 w-6 bg-sage"
                       : "h-1.5 w-1.5 bg-ink/20 hover:bg-ink/35"
                   }`}
