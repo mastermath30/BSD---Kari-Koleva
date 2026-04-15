@@ -12,36 +12,36 @@ export const featuredArtworks: FeaturedArtwork[] = [
   {
     id: "1",
     alt: "Animal portrait by Kari Koleva",
-    src: "/IMG_1280.jpeg",
+    src: "https://assets.karikoleva.com/IMG_1280.webp",
   },
   {
     id: "2",
     alt: "Animal portrait by Kari Koleva",
-    src: "/IMG_1282.jpeg",
+    src: "https://assets.karikoleva.com/IMG_1282.webp",
   },
   {
     id: "3",
     alt: "Animal portrait by Kari Koleva",
-    src: "/IMG_1284.jpeg",
+    src: "https://assets.karikoleva.com/IMG_1284.webp",
   },
   {
     id: "4",
     alt: "Animal portrait by Kari Koleva",
-    src: "/IMG_1285.jpeg",
+    src: "https://assets.karikoleva.com/IMG_1285.webp",
   },
   {
     id: "5",
     alt: "Animal portrait by Kari Koleva",
-    src: "/IMG_1288.jpeg",
+    src: "https://assets.karikoleva.com/IMG_1288.webp",
   },
   {
     id: "6",
     alt: "Animal portrait by Kari Koleva",
-    src: "/IMG_1291.jpeg",
+    src: "https://assets.karikoleva.com/IMG_1291.webp",
   },
   {
     id: "7",
     alt: "Animal portrait by Kari Koleva",
-    src: "/IMG_1295.jpeg",
+    src: "https://assets.karikoleva.com/IMG_1295.webp",
   },
 ];
