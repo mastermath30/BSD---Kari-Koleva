@@ -61,8 +61,7 @@ export function AboutPageBody() {
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p className="eyebrow-label">Origin Story</p>
-        <h3 className="mt-3 font-display text-2xl font-semibold tracking-[0.06em] text-ink sm:text-3xl">
+        <h3 className="font-display text-2xl font-semibold tracking-[0.06em] text-ink sm:text-3xl">
           {aboutPageCopy.howItStartedTitle}
         </h3>
 
@@ -102,8 +101,7 @@ export function AboutPageBody() {
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p className="eyebrow-label">Animals &amp; Life</p>
-        <h3 className="mt-3 font-display text-2xl font-semibold tracking-[0.06em] text-ink sm:text-3xl">
+        <h3 className="font-display text-2xl font-semibold tracking-[0.06em] text-ink sm:text-3xl">
           {aboutPageCopy.lifeWithAnimalsTitle}
         </h3>
 

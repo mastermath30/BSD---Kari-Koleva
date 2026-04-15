@@ -27,10 +27,9 @@ export function CommissionsHowToOrder() {
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p className="eyebrow-label">The Process</p>
         <h2
           id="how-to-order-heading"
-          className="mt-3 font-display text-3xl font-semibold tracking-[0.06em] text-ink sm:text-4xl"
+          className="font-display text-3xl font-semibold tracking-[0.06em] text-ink sm:text-4xl"
         >
           How to order your pet portrait
         </h2>

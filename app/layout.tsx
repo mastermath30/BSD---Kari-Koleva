@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Montserrat, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { SiteShell } from "@/components/site-shell";
 import { siteConfig } from "@/lib/site-config";
 
-const display = Cormorant_Garamond({
+const display = Montserrat({
   subsets: ["latin"],
   variable: "--font-display",
   weight: ["500", "600", "700"],
