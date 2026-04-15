@@ -7,6 +7,14 @@ import {
   reviewsSummary,
 } from "@/lib/commissions-reviews-data";
 
+type LiveReview = {
+  id: string;
+  rating: number;
+  body: string;
+  user_id: string;
+  profiles: { username: string; display_name: string | null } | null;
+};
+
 const containerVariants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
@@ -45,7 +53,26 @@ function RatingStars({ value }: { value: number }) {
   );
 }
 
-export function CommissionsReviewsSection() {
+export function CommissionsReviewsSection({
+  liveReviews,
+}: {
+  liveReviews?: LiveReview[];
+}) {
+  const hasLive = liveReviews && liveReviews.length > 0;
+
+  // Compute average and distribution from live data if available
+  const displayAverage = hasLive
+    ? (liveReviews.reduce((s, r) => s + r.rating, 0) / liveReviews.length).toFixed(1)
+    : reviewsSummary.averageLabel;
+
+  const displayDistribution = hasLive
+    ? [5, 4, 3, 2, 1].map((stars) => ({
+        stars,
+        percent: Math.round(
+          (liveReviews.filter((r) => r.rating === stars).length / liveReviews.length) * 100
+        ),
+      }))
+    : reviewsSummary.distribution.map((d) => ({ stars: d.stars, percent: d.percent }));
   return (
     <section
       className="border-t border-ink/[0.06] bg-canvas"
@@ -81,17 +108,17 @@ export function CommissionsReviewsSection() {
           >
             <div className="flex items-end gap-3">
               <span className="font-display text-5xl font-semibold tracking-[-0.02em] text-ink">
-                {reviewsSummary.averageLabel}
+                {displayAverage}
               </span>
               <span className="pb-1.5 font-sans text-sm text-muted">/ 5</span>
             </div>
-            <RatingStars value={4.9} />
+            <RatingStars value={parseFloat(displayAverage)} />
             <p className="font-sans text-[0.7rem] uppercase tracking-[0.18em] text-muted/70">
-              Overall rating
+              {hasLive ? `${liveReviews.length} review${liveReviews.length === 1 ? "" : "s"}` : "Overall rating"}
             </p>
 
-            <div className="space-y-3 border-t border-ink/[0.06] pt-6" aria-label="Sample star distribution">
-              {reviewsSummary.distribution.map((row) => (
+            <div className="space-y-3 border-t border-ink/[0.06] pt-6" aria-label="Star distribution">
+              {displayDistribution.map((row) => (
                 <div
                   key={row.stars}
                   className="grid grid-cols-[2.5rem_1fr] items-center gap-3"
@@ -115,32 +142,47 @@ export function CommissionsReviewsSection() {
             variants={containerVariants}
             className="surface-card divide-y divide-ink/[0.05] p-6 sm:p-7 lg:p-8"
           >
-            {reviewPlaceholders.map((rev) => (
-              <motion.li
-                key={rev.id}
-                variants={itemVariant}
-                className="py-9 first:pt-0 last:pb-0"
-              >
-                {/* Pull-quote in display font */}
-                <blockquote className="font-display text-lg font-medium italic leading-[1.7] tracking-[0.02em] text-ink/85 sm:text-xl">
-                  &ldquo;{rev.quote}&rdquo;
-                </blockquote>
-                <p className="mt-4 font-sans text-[0.65rem] font-medium uppercase tracking-[0.22em] text-muted/70">
-                  {rev.attribution}
-                </p>
-                {rev.imageSlots > 0 ? (
-                  <div className="mt-5 flex gap-2">
-                    {Array.from({ length: rev.imageSlots }).map((_, i) => (
-                      <div
-                        key={i}
-                        className="h-14 w-14 shrink-0 rounded-sm bg-ink/[0.04] ring-1 ring-ink/[0.06]"
-                        aria-hidden
-                      />
-                    ))}
-                  </div>
-                ) : null}
-              </motion.li>
-            ))}
+            {hasLive
+              ? liveReviews.map((rev) => (
+                  <motion.li
+                    key={rev.id}
+                    variants={itemVariant}
+                    className="py-9 first:pt-0 last:pb-0"
+                  >
+                    <blockquote className="font-display text-lg font-medium italic leading-[1.7] tracking-[0.02em] text-ink/85 sm:text-xl">
+                      &ldquo;{rev.body}&rdquo;
+                    </blockquote>
+                    <p className="mt-4 font-sans text-[0.65rem] font-medium uppercase tracking-[0.22em] text-muted/70">
+                      {rev.profiles?.display_name ?? rev.profiles?.username ?? "Client"}
+                      {"  ·  "}{"★".repeat(rev.rating)}
+                    </p>
+                  </motion.li>
+                ))
+              : reviewPlaceholders.map((rev) => (
+                  <motion.li
+                    key={rev.id}
+                    variants={itemVariant}
+                    className="py-9 first:pt-0 last:pb-0"
+                  >
+                    <blockquote className="font-display text-lg font-medium italic leading-[1.7] tracking-[0.02em] text-ink/85 sm:text-xl">
+                      &ldquo;{rev.quote}&rdquo;
+                    </blockquote>
+                    <p className="mt-4 font-sans text-[0.65rem] font-medium uppercase tracking-[0.22em] text-muted/70">
+                      {rev.attribution}
+                    </p>
+                    {rev.imageSlots > 0 ? (
+                      <div className="mt-5 flex gap-2">
+                        {Array.from({ length: rev.imageSlots }).map((_, i) => (
+                          <div
+                            key={i}
+                            className="h-14 w-14 shrink-0 rounded-sm bg-ink/[0.04] ring-1 ring-ink/[0.06]"
+                            aria-hidden
+                          />
+                        ))}
+                      </div>
+                    ) : null}
+                  </motion.li>
+                ))}
           </motion.ul>
         </motion.div>
       </div>
