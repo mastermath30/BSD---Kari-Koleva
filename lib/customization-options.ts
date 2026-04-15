@@ -40,7 +40,7 @@ export const adjustmentsNote =
  * Replace this placeholder once frame photos and pricing are confirmed.
  */
 export const frameOptionsNote =
-  "Frame options and pricing are coming soon. Please enquire when placing your order.";
+  "Frame options and pricing are coming soon. Please inquire when placing your order.";
 
 export const backgroundOptionsDescription =
   "Each portrait includes a plain background color of your choice to keep the focus on your pet. If you'd like to add accessories or a more detailed background — such as a landscape or specific setting — this can be included for an additional cost.";
