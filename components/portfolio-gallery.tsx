@@ -37,7 +37,7 @@ export function PortfolioGallery() {
                 width={0}
                 height={0}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                quality={90}
+                unoptimized
                 className="w-full h-auto transition-transform duration-700 ease-out group-hover:scale-[1.03]"
               />
             </div>

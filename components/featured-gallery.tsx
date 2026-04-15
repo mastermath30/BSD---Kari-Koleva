@@ -258,7 +258,7 @@ export function FeaturedGallery() {
                             className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]"
                             sizes="(max-width: 768px) 88vw, 36vw"
                             priority={i >= n && i < n + 3}
-                            quality={95}
+                            unoptimized
                           />
                         </div>
                       </div>
