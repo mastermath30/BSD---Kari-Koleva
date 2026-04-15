@@ -6,10 +6,7 @@ import { CustomizationOptions } from "@/components/customization-options";
 import { PhotoTips } from "@/components/photo-tips";
 import { ContactForm } from "@/components/contact-form";
 import { DirectContactPanel } from "@/components/direct-contact-panel";
-import { CommissionsReviewsSectionServer } from "@/components/commissions-reviews-section-server";
 import { commissionsCopy } from "@/lib/commissions-copy";
-
-export const revalidate = 300; // re-fetch reviews at most every 5 minutes
 
 export const metadata: Metadata = {
   title: "Commissions",
@@ -48,7 +45,6 @@ export default function CommissionsPage() {
         </div>
       </section>
 
-      <CommissionsReviewsSectionServer />
     </>
   );
 }
