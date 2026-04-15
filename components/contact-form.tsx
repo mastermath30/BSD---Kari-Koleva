@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useId, useRef, useState } from "react";
+import { useCallback, useId, useRef, useState, useTransition } from "react";
 import { contactPageCopy } from "@/lib/contact-page-copy";
+import { sendContactEmail } from "@/app/contact/actions";
 
 type ContactFormProps = {
   /** Override default intro paragraph (e.g. on /commissions). */
@@ -21,9 +22,12 @@ const focusRing =
 export function ContactForm({ introText, showCommissionsNote }: ContactFormProps) {
   const formId = useId();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
   const [filesSummary, setFilesSummary] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [showNoBackendNotice, setShowNoBackendNotice] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [isPending, startTransition] = useTransition();
 
   const onFilesChange = useCallback(() => {
     const input = fileInputRef.current;
@@ -38,7 +42,7 @@ export function ContactForm({ introText, showCommissionsNote }: ContactFormProps
   }, []);
 
   const clearNotice = useCallback(() => {
-    setShowNoBackendNotice(false);
+    setStatus("idle");
   }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -48,7 +52,18 @@ export function ContactForm({ introText, showCommissionsNote }: ContactFormProps
       form.reportValidity();
       return;
     }
-    setShowNoBackendNotice(true);
+    const formData = new FormData(form);
+    startTransition(async () => {
+      const result = await sendContactEmail(formData);
+      if (result.success) {
+        setStatus("success");
+        formRef.current?.reset();
+        setFilesSummary(null);
+      } else {
+        setStatus("error");
+        setErrorMessage(result.error ?? "Something went wrong.");
+      }
+    });
   };
 
   const fieldClass =
@@ -57,7 +72,7 @@ export function ContactForm({ introText, showCommissionsNote }: ContactFormProps
   const uploadHintId = `${formId}-upload-hint`;
 
   return (
-    <form onSubmit={handleSubmit} className="surface-card space-y-8 p-6 sm:p-8 lg:p-10">
+    <form ref={formRef} onSubmit={handleSubmit} className="surface-card space-y-8 p-6 sm:p-8 lg:p-10">
       <header className="space-y-4">
         <p className="eyebrow-label">Get in Touch</p>
         <h2 className="font-display text-2xl font-semibold tracking-[0.04em] text-ink sm:text-3xl">
@@ -232,18 +247,32 @@ export function ContactForm({ introText, showCommissionsNote }: ContactFormProps
         </div>
       </div>
 
-      {showNoBackendNotice ? (
+      {status === "success" ? (
         <p
           className="rounded-sm border border-sage/25 bg-sage/[0.06] px-4 py-3 font-sans text-sm leading-relaxed text-ink/90"
           role="status"
           aria-live="polite"
         >
-          {contactPageCopy.noBackendNotice}
+          Message sent! Kari will be in touch soon.
         </p>
       ) : null}
 
-      <button type="submit" className={`button-primary ${focusRing}`}>
-        {contactPageCopy.submitLabel}
+      {status === "error" ? (
+        <p
+          className="rounded-sm border border-red-200 bg-red-50 px-4 py-3 font-sans text-sm leading-relaxed text-red-800"
+          role="alert"
+          aria-live="polite"
+        >
+          {errorMessage}
+        </p>
+      ) : null}
+
+      <button
+        type="submit"
+        disabled={isPending}
+        className={`button-primary ${focusRing} disabled:opacity-60 disabled:cursor-not-allowed`}
+      >
+        {isPending ? "Sending…" : contactPageCopy.submitLabel}
       </button>
     </form>
   );
