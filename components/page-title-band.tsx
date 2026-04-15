@@ -43,7 +43,7 @@ export function PageTitleBand({
       >
         <motion.h1
           variants={titleItem}
-          className="font-display text-2xl font-semibold tracking-[0.1em] text-ink xs:text-3xl sm:text-[2rem] lg:text-[2.5rem] 2xl:text-[2.75rem]"
+          className="font-display text-2xl font-medium tracking-[0.1em] text-ink xs:text-3xl sm:text-[2rem] lg:text-[2.5rem] 2xl:text-[2.75rem]"
         >
           {title}
         </motion.h1>

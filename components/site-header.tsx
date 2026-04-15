@@ -51,7 +51,7 @@ export function SiteHeader() {
       <div className="section-shell flex items-center justify-between gap-4 py-3 sm:py-4 lg:py-5">
         <Link
           href="/"
-          className="font-display text-lg font-semibold uppercase tracking-[0.12em] text-ink transition-all duration-300 ease-out hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:text-xl md:text-2xl lg:text-3xl"
+          className="font-display text-lg font-medium uppercase tracking-[0.12em] text-ink transition-all duration-300 ease-out hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/40 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:text-xl md:text-2xl lg:text-3xl"
         >
           {siteConfig.artistName}
         </Link>

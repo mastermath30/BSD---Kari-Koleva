@@ -8,7 +8,7 @@ export default function LoginPage({
   return (
     <main className="flex min-h-screen items-center justify-center bg-canvas px-4">
       <div className="w-full max-w-sm">
-        <h1 className="font-display text-3xl font-semibold tracking-wide text-ink">
+        <h1 className="font-display text-3xl font-medium tracking-wide text-ink">
           Sign in
         </h1>
         <p className="mt-2 font-sans text-sm text-muted">

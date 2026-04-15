@@ -48,7 +48,7 @@ export default async function AdminPage({
         <div className="flex items-start justify-between">
           <div>
             <p className="eyebrow-label">Admin portal</p>
-            <h1 className="mt-2 font-display text-3xl font-semibold tracking-wide text-ink">
+            <h1 className="mt-2 font-display text-3xl font-medium tracking-wide text-ink">
               Manage
             </h1>
           </div>
@@ -64,7 +64,7 @@ export default async function AdminPage({
           <div className="space-y-10">
             {/* User search */}
             <section>
-              <h2 className="font-display text-xl font-semibold tracking-wide text-ink">
+              <h2 className="font-display text-xl font-medium tracking-wide text-ink">
                 Users
               </h2>
               <form method="GET" className="mt-4 flex gap-3">
@@ -113,7 +113,7 @@ export default async function AdminPage({
 
             {/* Recent orders */}
             <section>
-              <h2 className="font-display text-xl font-semibold tracking-wide text-ink">
+              <h2 className="font-display text-xl font-medium tracking-wide text-ink">
                 Recent orders
               </h2>
               <ul className="mt-5 divide-y divide-ink/[0.06] rounded-sm border border-ink/[0.08]">
@@ -154,7 +154,7 @@ export default async function AdminPage({
 
           {/* Right — pending reviews */}
           <section>
-            <h2 className="font-display text-xl font-semibold tracking-wide text-ink">
+            <h2 className="font-display text-xl font-medium tracking-wide text-ink">
               Pending reviews
               {!!pendingReviews?.length && (
                 <span className="ml-2 rounded-full bg-sage/15 px-2 py-0.5 font-sans text-sm font-normal text-sage-deep">

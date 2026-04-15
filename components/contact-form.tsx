@@ -75,7 +75,7 @@ export function ContactForm({ introText, showCommissionsNote }: ContactFormProps
     <form ref={formRef} onSubmit={handleSubmit} className="surface-card space-y-8 p-6 sm:p-8 lg:p-10">
       <header className="space-y-4">
         <p className="eyebrow-label">Get in Touch</p>
-        <h2 className="font-display text-2xl font-semibold tracking-[0.04em] text-ink sm:text-3xl">
+        <h2 className="font-display text-2xl font-medium tracking-[0.04em] text-ink sm:text-3xl">
           {contactPageCopy.formHeading}
         </h2>
         <p className="max-w-md font-sans text-sm leading-relaxed text-muted sm:text-base">

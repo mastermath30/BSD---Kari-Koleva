@@ -171,7 +171,7 @@ export function FeaturedGallery() {
             <motion.h1
               id="featured-heading"
               variants={heroItem}
-              className="mt-4 font-display text-4xl font-semibold tracking-[0.07em] text-ink sm:text-5xl lg:text-[3.75rem] 2xl:text-[4.25rem]"
+              className="mt-4 font-display text-4xl font-medium tracking-[0.07em] text-ink sm:text-5xl lg:text-[3.75rem] 2xl:text-[4.25rem]"
             >
               {homeCopy.heroTitle}
             </motion.h1>

@@ -17,14 +17,14 @@ export function CustomizationOptions() {
         <p className="eyebrow-label">What You Get</p>
         <h2
           id="customization-heading"
-          className="mt-2 font-display text-2xl font-semibold tracking-[0.04em] text-ink sm:text-3xl"
+          className="mt-2 font-display text-2xl font-medium tracking-[0.04em] text-ink sm:text-3xl"
         >
           Customization Options
         </h2>
 
         {/* Included by default */}
         <div className="mt-8 surface-card p-7 sm:p-8">
-          <h3 className="font-display text-lg font-semibold tracking-[0.03em] text-ink sm:text-xl">
+          <h3 className="font-display text-lg font-medium tracking-[0.03em] text-ink sm:text-xl">
             Your portrait comes with
           </h3>
           <ul className="mt-4 space-y-2">
@@ -39,7 +39,7 @@ export function CustomizationOptions() {
 
         {/* Adjustments */}
         <div className="mt-6 surface-card p-7 sm:p-8 space-y-5">
-          <h3 className="font-display text-lg font-semibold tracking-[0.03em] text-ink sm:text-xl">
+          <h3 className="font-display text-lg font-medium tracking-[0.03em] text-ink sm:text-xl">
             Adjustments
           </h3>
           <p className="font-sans text-sm leading-relaxed text-muted sm:text-base">
@@ -59,7 +59,7 @@ export function CustomizationOptions() {
 
         {/* Frame options */}
         <div className="mt-6 surface-card p-7 sm:p-8">
-          <h3 className="font-display text-lg font-semibold tracking-[0.03em] text-ink sm:text-xl">
+          <h3 className="font-display text-lg font-medium tracking-[0.03em] text-ink sm:text-xl">
             Frame options
           </h3>
           <p className="mt-3 font-sans text-sm leading-relaxed text-muted sm:text-base italic">
@@ -70,7 +70,7 @@ export function CustomizationOptions() {
 
         {/* Background options */}
         <div className="mt-6 surface-card p-7 sm:p-8 space-y-5">
-          <h3 className="font-display text-lg font-semibold tracking-[0.03em] text-ink sm:text-xl">
+          <h3 className="font-display text-lg font-medium tracking-[0.03em] text-ink sm:text-xl">
             Background options
           </h3>
           <p className="font-sans text-sm leading-relaxed text-muted sm:text-base">

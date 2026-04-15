@@ -45,7 +45,7 @@ export function AboutSection() {
             <p className="eyebrow-label">The Artist</p>
             <h2
               id="about-heading"
-              className="font-display text-3xl font-semibold tracking-[0.07em] text-ink sm:text-4xl lg:text-[2.35rem]"
+              className="font-display text-3xl font-medium tracking-[0.07em] text-ink sm:text-4xl lg:text-[2.35rem]"
             >
               {homeCopy.meetTitle}
             </h2>

@@ -10,7 +10,7 @@ export function PhotoTips() {
         <p className="eyebrow-label">Reference Photos</p>
         <h2
           id="photo-tips-heading"
-          className="mt-2 font-display text-2xl font-semibold tracking-[0.04em] text-ink sm:text-3xl"
+          className="mt-2 font-display text-2xl font-medium tracking-[0.04em] text-ink sm:text-3xl"
         >
           Photo Tips
         </h2>
@@ -26,7 +26,7 @@ export function PhotoTips() {
         <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10">
           {/* Do's */}
           <div className="surface-card p-7 sm:p-8 space-y-5">
-            <h3 className="font-display text-xl font-semibold tracking-[0.03em] text-ink">
+            <h3 className="font-display text-xl font-medium tracking-[0.03em] text-ink">
               Do&rsquo;s
             </h3>
             <ul className="space-y-3">
@@ -45,7 +45,7 @@ export function PhotoTips() {
 
           {/* Don'ts */}
           <div className="surface-card p-7 sm:p-8 space-y-5">
-            <h3 className="font-display text-xl font-semibold tracking-[0.03em] text-ink">
+            <h3 className="font-display text-xl font-medium tracking-[0.03em] text-ink">
               Don&rsquo;ts
             </h3>
             <ul className="space-y-3">

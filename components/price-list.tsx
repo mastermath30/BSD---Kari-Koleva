@@ -34,7 +34,7 @@ export function PriceList() {
           <p className="eyebrow-label">Pricing</p>
           <h2
             id="price-list-heading"
-            className="mt-3 font-display text-3xl font-semibold tracking-[0.06em] text-ink sm:text-4xl"
+            className="mt-3 font-display text-3xl font-medium tracking-[0.06em] text-ink sm:text-4xl"
           >
             Price List
           </h2>
@@ -56,7 +56,7 @@ export function PriceList() {
               variants={cardVariant}
               className="surface-card surface-card-hover p-7 sm:p-8 space-y-5"
             >
-              <h3 className="font-display text-2xl font-semibold tracking-[0.05em] text-ink">
+              <h3 className="font-display text-2xl font-medium tracking-[0.05em] text-ink">
                 {tier.size}
               </h3>
 

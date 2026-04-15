@@ -16,7 +16,7 @@ export function CommissionsResourceCards() {
           }
         >
           <p className="eyebrow-label">Commission Resource</p>
-          <h2 className="mt-2.5 font-display text-xl font-semibold tracking-[0.04em] text-ink sm:text-2xl">
+          <h2 className="mt-2.5 font-display text-xl font-medium tracking-[0.04em] text-ink sm:text-2xl">
             {item.title}
           </h2>
           <p className="copy-readable mt-4">

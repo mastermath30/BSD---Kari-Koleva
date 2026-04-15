@@ -45,7 +45,7 @@ export default async function DashboardPage({
         <div className="flex items-start justify-between">
           <div>
             <p className="eyebrow-label">My account</p>
-            <h1 className="mt-2 font-display text-3xl font-semibold tracking-wide text-ink">
+            <h1 className="mt-2 font-display text-3xl font-medium tracking-wide text-ink">
               {profile?.display_name ?? profile?.username ?? "Dashboard"}
             </h1>
             <p className="mt-1 font-sans text-sm text-muted">@{profile?.username}</p>
@@ -66,7 +66,7 @@ export default async function DashboardPage({
 
         {/* Orders */}
         <section className="mt-12">
-          <h2 className="font-display text-xl font-semibold tracking-wide text-ink">
+          <h2 className="font-display text-xl font-medium tracking-wide text-ink">
             Your orders
           </h2>
 

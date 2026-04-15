@@ -42,7 +42,7 @@ export default async function ReviewPage({
 
         <div className="mt-6">
           <p className="eyebrow-label">Leave a review</p>
-          <h1 className="mt-2 font-display text-3xl font-semibold tracking-wide text-ink">
+          <h1 className="mt-2 font-display text-3xl font-medium tracking-wide text-ink">
             How did it go?
           </h1>
           {order.product_description && (

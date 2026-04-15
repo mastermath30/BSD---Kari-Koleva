@@ -17,7 +17,7 @@ export function AboutPageBody() {
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
         >
           <p className="eyebrow-label">About the Artist</p>
-          <h2 className="font-display text-3xl font-semibold tracking-[0.07em] text-ink sm:text-4xl lg:text-[2.35rem]">
+          <h2 className="font-display text-3xl font-medium tracking-[0.07em] text-ink sm:text-4xl lg:text-[2.35rem]">
             {aboutPageCopy.heading}
           </h2>
           <div className="space-y-5">
@@ -61,7 +61,7 @@ export function AboutPageBody() {
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
-        <h3 className="font-display text-2xl font-semibold tracking-[0.06em] text-ink sm:text-3xl">
+        <h3 className="font-display text-2xl font-medium tracking-[0.06em] text-ink sm:text-3xl">
           {aboutPageCopy.howItStartedTitle}
         </h3>
 
@@ -101,7 +101,7 @@ export function AboutPageBody() {
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
-        <h3 className="font-display text-2xl font-semibold tracking-[0.06em] text-ink sm:text-3xl">
+        <h3 className="font-display text-2xl font-medium tracking-[0.06em] text-ink sm:text-3xl">
           {aboutPageCopy.lifeWithAnimalsTitle}
         </h3>
 

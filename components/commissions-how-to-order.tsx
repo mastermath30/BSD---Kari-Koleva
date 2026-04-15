@@ -29,7 +29,7 @@ export function CommissionsHowToOrder() {
       >
         <h2
           id="how-to-order-heading"
-          className="font-display text-3xl font-semibold tracking-[0.06em] text-ink sm:text-4xl"
+          className="font-display text-3xl font-medium tracking-[0.06em] text-ink sm:text-4xl"
         >
           How to order your pet portrait
         </h2>
@@ -48,10 +48,10 @@ export function CommissionsHowToOrder() {
             variants={cardVariant}
             className="surface-card surface-card-hover p-7 sm:p-8 lg:p-9 space-y-4"
           >
-            <span className="font-display text-5xl font-semibold leading-none text-sage/35 tracking-[-0.02em]">
+            <span className="font-display text-5xl font-medium leading-none text-sage/35 tracking-[-0.02em]">
               {String(step.number).padStart(2, "0")}
             </span>
-            <h3 className="font-display text-xl font-semibold tracking-[0.04em] text-ink sm:text-2xl">
+            <h3 className="font-display text-xl font-medium tracking-[0.04em] text-ink sm:text-2xl">
               {step.title}
             </h3>
             <div className="space-y-3">

@@ -88,7 +88,7 @@ export function CommissionsReviewsSection({
           <p className="eyebrow-label">Client Reviews</p>
           <h2
             id="reviews-heading"
-            className="mt-3 font-display text-3xl font-semibold tracking-[0.06em] text-ink sm:text-4xl"
+            className="mt-3 font-display text-3xl font-medium tracking-[0.06em] text-ink sm:text-4xl"
           >
             What clients say
           </h2>
@@ -107,7 +107,7 @@ export function CommissionsReviewsSection({
             className="surface-card p-6 sm:p-7 lg:p-8 space-y-6"
           >
             <div className="flex items-end gap-3">
-              <span className="font-display text-5xl font-semibold tracking-[-0.02em] text-ink">
+              <span className="font-display text-5xl font-medium tracking-[-0.02em] text-ink">
                 {displayAverage}
               </span>
               <span className="pb-1.5 font-sans text-sm text-muted">/ 5</span>

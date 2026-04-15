@@ -5,7 +5,7 @@ export function DirectContactPanel({ className = "" }: { className?: string }) {
   return (
     <aside className={`pt-2 ${className}`.trim()}>
       <p className="eyebrow-label">Direct Details</p>
-      <h2 className="mt-2 font-display text-xl font-semibold tracking-[0.04em] text-ink">
+      <h2 className="mt-2 font-display text-xl font-medium tracking-[0.04em] text-ink">
         {contactPageCopy.directHeading}
       </h2>
       <ul className="mt-5 space-y-4 font-sans text-sm text-muted">

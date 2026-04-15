@@ -55,7 +55,7 @@ export default async function AdminUserPage({
           </a>
           <div>
             <p className="eyebrow-label">Customer profile</p>
-            <h1 className="mt-2 font-display text-3xl font-semibold tracking-wide text-ink">
+            <h1 className="mt-2 font-display text-3xl font-medium tracking-wide text-ink">
               @{profile.username}
             </h1>
             {profile.display_name && (
@@ -88,7 +88,7 @@ export default async function AdminUserPage({
         <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-[1fr_360px]">
           {/* Left — order list */}
           <section>
-            <h2 className="font-display text-xl font-semibold tracking-wide text-ink">
+            <h2 className="font-display text-xl font-medium tracking-wide text-ink">
               Orders
               {!!orders?.length && (
                 <span className="ml-2 font-sans text-sm font-normal text-muted">
@@ -218,7 +218,7 @@ export default async function AdminUserPage({
 
           {/* Right — create new order */}
           <section>
-            <h2 className="font-display text-xl font-semibold tracking-wide text-ink">
+            <h2 className="font-display text-xl font-medium tracking-wide text-ink">
               New order
             </h2>
             <form
