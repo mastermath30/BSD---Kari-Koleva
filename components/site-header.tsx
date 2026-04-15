@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
+import { createClient } from "@/lib/supabase/client";
+import type { User } from "@supabase/supabase-js";
 
 function navLinkClassName(active: boolean) {
   const base =
@@ -19,6 +21,16 @@ function navLinkClassName(active: boolean) {
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data }) => setUser(data.user));
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+      setUser(session?.user ?? null);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
 
   const linkActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href;
@@ -58,6 +70,12 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
+          <Link
+            href={user ? "/dashboard" : "/login"}
+            className={navLinkClassName(linkActive(user ? "/dashboard" : "/login"))}
+          >
+            {user ? "My account" : "Log in"}
+          </Link>
         </nav>
 
         <button
@@ -108,6 +126,19 @@ export function SiteHeader() {
                   </motion.div>
                 );
               })}
+              <motion.div
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.04 * siteConfig.nav.length, duration: 0.25 }}
+              >
+                <Link
+                  href={user ? "/dashboard" : "/login"}
+                  className="block rounded-md px-3 py-3 text-base font-medium text-ink/90 transition-all duration-300 ease-out hover:bg-ink/[0.04] hover:translate-x-1 hover:text-ink"
+                  onClick={() => setOpen(false)}
+                >
+                  {user ? "My account" : "Log in"}
+                </Link>
+              </motion.div>
             </nav>
           </motion.div>
         ) : null}

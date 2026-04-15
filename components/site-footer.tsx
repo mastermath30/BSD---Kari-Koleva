@@ -59,10 +59,10 @@ export function SiteFooter() {
                 href={siteConfig.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3.5 inline-flex min-h-[42px] items-center gap-2 rounded-sm border border-canvas/30 px-4 py-2.5 text-sm text-canvas/90 transition-all duration-300 ease-out hover:border-canvas/55 hover:bg-canvas/10 hover:translate-y-[-1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-canvas/50 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-footer"
+                aria-label="Instagram"
+                className="mt-3.5 inline-flex items-center text-canvas/70 transition-all duration-300 ease-out hover:text-canvas hover:translate-y-[-1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-canvas/50 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-footer"
               >
-                <Instagram className="h-4 w-4" strokeWidth={1.5} aria-hidden />
-                <span>Instagram</span>
+                <Instagram className="h-5 w-5" strokeWidth={1.5} />
               </a>
             </div>
           </div>
