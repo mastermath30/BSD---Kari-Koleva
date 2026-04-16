@@ -45,17 +45,31 @@ export const frameOptionsNote =
 export const backgroundOptionsDescription =
   "Each portrait includes a plain background color of your choice to keep the focus on your pet. If you'd like to add accessories or a more detailed background — such as a landscape or specific setting — this can be included for an additional cost.";
 
-/**
- * Background option photo placeholders — replace with real photos when available.
- * TBD: plain background example photo, detailed background example photo.
- */
 export const backgroundPhotos = {
-  plain: {
-    src: "" as string, // TBD — example of plain background portrait
-    alt: "Portrait with plain background (photo TBD)",
-  },
-  detailed: {
-    src: "" as string, // TBD — example of detailed background portrait
-    alt: "Portrait with detailed background (photo TBD)",
-  },
-} as const;
+  plain: [
+    {
+      src: "https://assets.karikoleva.com/image8.webp",
+      alt: "Portrait with plain background",
+      aspectRatio: 0.793,
+    },
+    {
+      src: "https://assets.karikoleva.com/IMG_2566.webp",
+      alt: "Portrait with plain background",
+      aspectRatio: 0.711,
+    },
+  ],
+  detailed: [
+    {
+      src: "https://assets.karikoleva.com/image6.webp",
+      alt: "Portrait with detailed background",
+      aspectRatio: 0.762,
+    },
+    {
+      // landscape — trimmed ~5% each side, effective ratio 1.305 * 0.90 = 1.175
+      src: "https://assets.karikoleva.com/image7.webp",
+      alt: "Portrait with detailed background",
+      aspectRatio: 1.175,
+      objectPosition: "center",
+    },
+  ],
+};

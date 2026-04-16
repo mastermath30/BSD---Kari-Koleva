@@ -76,29 +76,37 @@ export function CustomizationOptions() {
           <p className="font-sans text-sm leading-relaxed text-muted sm:text-base">
             {backgroundOptionsDescription}
           </p>
-          {/* TBD: replace with real background example photos */}
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {[backgroundPhotos.plain, backgroundPhotos.detailed].map((photo, i) => (
-              <div key={i}>
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-ink/[0.04] ring-1 ring-ink/10 flex items-center justify-center">
-                  {photo.src ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={photo.src}
-                      alt={photo.alt}
-                      className="h-full w-full object-cover"
-                    />
-                  ) : (
-                    <span className="font-sans text-xs text-muted/70 px-4 text-center">
-                      {photo.alt}
-                    </span>
-                  )}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {(["plain", "detailed"] as const).map((type) => {
+              const photos = backgroundPhotos[type];
+              const totalRatio = photos.reduce((s, p) => s + p.aspectRatio, 0);
+              return (
+                <div key={type}>
+                  <div className="flex gap-2 h-72">
+                    {photos.map((photo) => {
+                      const widthPct = `${((photo.aspectRatio / totalRatio) * 100).toFixed(1)}%`;
+                      return (
+                        <div
+                          key={photo.src}
+                          className="flex-shrink-0 overflow-hidden rounded-sm ring-1 ring-ink/10"
+                          style={{ width: widthPct }}
+                        >
+                          <img
+                            src={photo.src}
+                            alt={photo.alt}
+                            className="w-full h-full object-cover"
+                            style={{ objectPosition: "top" }}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <p className="mt-2 font-sans text-xs text-muted text-center capitalize">
+                    {type} background
+                  </p>
                 </div>
-                <p className="mt-2 font-sans text-xs text-muted text-center">
-                  {i === 0 ? "Plain background" : "Detailed background"}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
