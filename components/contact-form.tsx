@@ -12,6 +12,9 @@ type ContactFormProps = {
   showCommissionsNote?: boolean;
 };
 
+const MAX_FILE_BYTES = 25 * 1024 * 1024;
+const MAX_TOTAL_BYTES = 40 * 1024 * 1024;
+
 const focusRing =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/45 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas";
 
@@ -35,9 +38,25 @@ export function ContactForm({ introText, showCommissionsNote }: ContactFormProps
       setFilesSummary(null);
       return;
     }
-    const names = Array.from(input.files)
-      .map((f) => f.name)
-      .join(", ");
+    const files = Array.from(input.files);
+    const oversized = files.find((f) => f.size > MAX_FILE_BYTES);
+    if (oversized) {
+      setStatus("error");
+      setErrorMessage(`"${oversized.name}" is too large. Please keep each file under 25 MB.`);
+      input.value = "";
+      setFilesSummary(null);
+      return;
+    }
+    const totalBytes = files.reduce((sum, f) => sum + f.size, 0);
+    if (totalBytes > MAX_TOTAL_BYTES) {
+      setStatus("error");
+      setErrorMessage("Total attachment size exceeds 40 MB. Please reduce the number or size of files.");
+      input.value = "";
+      setFilesSummary(null);
+      return;
+    }
+    setStatus("idle");
+    const names = files.map((f) => f.name).join(", ");
     setFilesSummary(names);
   }, []);
 
@@ -217,9 +236,6 @@ export function ContactForm({ introText, showCommissionsNote }: ContactFormProps
           >
             <span className="font-sans text-sm text-muted">
               {contactPageCopy.uploadHint}
-            </span>
-            <span className="mt-1 font-sans text-xs text-muted/80">
-              Files stay on your device until a server upload is configured.
             </span>
             {filesSummary ? (
               <span className="mt-2 max-w-full truncate font-sans text-xs text-ink/70">
