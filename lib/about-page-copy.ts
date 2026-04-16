@@ -33,8 +33,8 @@ export const aboutPageCopy = {
  * TBD: real photo of Kari.
  */
 export const aboutPageImage = {
-  src: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=900&q=80",
-  alt: "Kari Koleva — artist portrait (placeholder, real photo TBD)",
+  src: "https://assets.karikoleva.com/image12.webp",
+  alt: "Kari Koleva — artist portrait",
 } as const;
 
 /**
@@ -43,12 +43,12 @@ export const aboutPageImage = {
  */
 export const aboutPageSubPhotos = {
   alexPainting: {
-    src: "" as string, // TBD — original Alex watercolour painting(s)
-    alt: "Original watercolour portrait of Alex (photo TBD)",
+    src: "https://assets.karikoleva.com/image11.webp",
+    alt: "Original portrait of Alex by Kari Koleva",
   },
   babyPhoto: {
-    src: "" as string, // TBD — childhood/baby photo
-    alt: "Young Kari with animals (photo TBD)",
+    src: "https://assets.karikoleva.com/image13.webp",
+    alt: "Young Kari at an art exhibition",
   },
   meAndAlex: {
     src: "" as string, // TBD — photo of Kari with Alex

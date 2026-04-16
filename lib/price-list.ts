@@ -29,6 +29,17 @@ export const priceTiers: PriceTier[] = [
     ],
   },
   {
+    size: '11" × 14"',
+    subjects: [
+      { label: "1 Subject", price: "$380" },
+      { label: "2 Subjects", price: "$470" },
+    ],
+    addons: [
+      { label: "Detailed Background / Accessories", price: "+$80" },
+      { label: "Frame", price: "+$30" },
+    ],
+  },
+  {
     size: '13" × 19"',
     subjects: [
       { label: "1 Subject", price: "$450" },

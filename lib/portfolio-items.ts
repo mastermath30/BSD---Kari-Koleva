@@ -82,4 +82,22 @@ export const portfolioItems: PortfolioItem[] = [
     src: "https://assets.karikoleva.com/IMG_1295.webp",
     frameClass: "aspect-[2/3]",
   },
+  {
+    id: "p13",
+    alt: "Dog portrait with Seattle skyline background by Kari Koleva",
+    src: "https://assets.karikoleva.com/image6.webp",
+    frameClass: "aspect-[3/4]",
+  },
+  {
+    id: "p14",
+    alt: "Dog portrait by Kari Koleva",
+    src: "https://assets.karikoleva.com/image7.webp",
+    frameClass: "aspect-[4/5]",
+  },
+  {
+    id: "p15",
+    alt: "Dog portrait by Kari Koleva",
+    src: "https://assets.karikoleva.com/image8.webp",
+    frameClass: "aspect-[4/5]",
+  },
 ];
