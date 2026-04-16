@@ -40,14 +40,16 @@ export function AboutPageBody() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
         >
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm artwork-frame">
+          <div className="w-full overflow-hidden rounded-sm artwork-frame">
             <Image
               src={aboutPageImage.src}
               alt={aboutPageImage.alt}
-              fill
-              className="object-cover transition-transform duration-700 ease-out hover:scale-[1.02]"
+              width={0}
+              height={0}
               sizes="(max-width: 1024px) 100vw, 50vw"
+              unoptimized
               priority
+              className="w-full h-auto transition-transform duration-700 ease-out hover:scale-[1.02]"
             />
           </div>
         </motion.div>
@@ -65,8 +67,8 @@ export function AboutPageBody() {
           {aboutPageCopy.howItStartedTitle}
         </h3>
 
-        <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="space-y-5">
+        <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-5 lg:gap-16">
+          <div className="space-y-5 lg:col-span-3">
             {aboutPageCopy.howItStarted.map((para, i) => (
               <p key={i} className="font-sans text-base leading-[1.85] text-muted">
                 {para}
@@ -74,22 +76,25 @@ export function AboutPageBody() {
             ))}
           </div>
 
-          {/* TBD: original Alex painting(s) photo */}
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-ink/[0.04] artwork-frame flex items-center justify-center">
-            {aboutPageSubPhotos.alexPainting.src ? (
+          {aboutPageSubPhotos.alexPainting.src ? (
+            <div className="w-full overflow-hidden rounded-sm artwork-frame lg:col-span-2">
               <Image
                 src={aboutPageSubPhotos.alexPainting.src}
                 alt={aboutPageSubPhotos.alexPainting.alt}
-                fill
-                className="object-cover"
+                width={0}
+                height={0}
                 sizes="(max-width: 1024px) 100vw, 50vw"
+                unoptimized
+                className="w-full h-auto"
               />
-            ) : (
-              <span className="font-sans text-xs text-muted/70 px-6 text-center">
+            </div>
+          ) : (
+            <div className="w-full rounded-sm bg-ink/[0.04] flex items-center justify-center p-10 lg:col-span-2">
+              <span className="font-sans text-xs text-muted/70 text-center">
                 {aboutPageSubPhotos.alexPainting.alt}
               </span>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </motion.div>
 
@@ -105,25 +110,28 @@ export function AboutPageBody() {
           {aboutPageCopy.lifeWithAnimalsTitle}
         </h3>
 
-        <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
-          {/* TBD: baby/childhood photo */}
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-ink/[0.04] artwork-frame flex items-center justify-center">
-            {aboutPageSubPhotos.babyPhoto.src ? (
+        <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-5 lg:gap-16">
+          {aboutPageSubPhotos.babyPhoto.src ? (
+            <div className="w-full overflow-hidden rounded-sm artwork-frame lg:col-span-2">
               <Image
                 src={aboutPageSubPhotos.babyPhoto.src}
                 alt={aboutPageSubPhotos.babyPhoto.alt}
-                fill
-                className="object-cover"
+                width={0}
+                height={0}
                 sizes="(max-width: 1024px) 100vw, 50vw"
+                unoptimized
+                className="w-full h-auto"
               />
-            ) : (
-              <span className="font-sans text-xs text-muted/70 px-6 text-center">
+            </div>
+          ) : (
+            <div className="w-full rounded-sm bg-ink/[0.04] flex items-center justify-center p-10 lg:col-span-2">
+              <span className="font-sans text-xs text-muted/70 text-center">
                 {aboutPageSubPhotos.babyPhoto.alt}
               </span>
-            )}
-          </div>
+            </div>
+          )}
 
-          <div className="space-y-5">
+          <div className="space-y-5 lg:col-span-3">
             {aboutPageCopy.lifeWithAnimals.map((para, i) => (
               <p key={i} className="font-sans text-base leading-[1.85] text-muted">
                 {para}
@@ -132,22 +140,19 @@ export function AboutPageBody() {
           </div>
         </div>
 
-        {/* TBD: me and Alex photo */}
-        <div className="mt-10 relative aspect-[16/7] w-full overflow-hidden rounded-sm bg-ink/[0.04] artwork-frame flex items-center justify-center">
-          {aboutPageSubPhotos.meAndAlex.src ? (
+        {aboutPageSubPhotos.meAndAlex.src ? (
+          <div className="mt-10 w-full overflow-hidden rounded-sm artwork-frame">
             <Image
               src={aboutPageSubPhotos.meAndAlex.src}
               alt={aboutPageSubPhotos.meAndAlex.alt}
-              fill
-              className="object-cover"
+              width={0}
+              height={0}
               sizes="100vw"
+              unoptimized
+              className="w-full h-auto"
             />
-          ) : (
-            <span className="font-sans text-xs text-muted/70 px-6 text-center">
-              {aboutPageSubPhotos.meAndAlex.alt}
-            </span>
-          )}
-        </div>
+          </div>
+        ) : null}
       </motion.div>
     </div>
   );

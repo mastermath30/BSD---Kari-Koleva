@@ -47,8 +47,8 @@ export const aboutPageSubPhotos = {
     alt: "Original portrait of Alex by Kari Koleva",
   },
   babyPhoto: {
-    src: "https://assets.karikoleva.com/image13.webp",
-    alt: "Young Kari at an art exhibition",
+    src: "https://assets.karikoleva.com/image9.webp",
+    alt: "Young Kari with animals",
   },
   meAndAlex: {
     src: "" as string, // TBD — photo of Kari with Alex

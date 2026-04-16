@@ -1,6 +1,10 @@
+import Image from "next/image";
 import { photoTipsIntro, photoTipsDos, photoTipsDonts } from "@/lib/photo-tips";
 
 export function PhotoTips() {
+  const dosWithPhotos = photoTipsDos.filter((t) => t.photoSrc);
+  const dontsWithPhotos = photoTipsDonts.filter((t) => t.photoSrc);
+
   return (
     <section
       aria-labelledby="photo-tips-heading"
@@ -25,41 +29,75 @@ export function PhotoTips() {
 
         <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10">
           {/* Do's */}
-          <div className="surface-card p-7 sm:p-8 space-y-5">
+          <div className="surface-card p-7 sm:p-8 flex flex-col">
             <h3 className="font-display text-xl font-medium tracking-[0.03em] text-ink">
               Do&rsquo;s
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 mt-5">
               {photoTipsDos.map((tip) => (
                 <li key={tip.label} className="flex items-start gap-3">
-                  <span className="mt-1 text-sage text-base leading-none" aria-hidden>✓</span>
+                  <span className="mt-1 text-sage text-base leading-none shrink-0" aria-hidden>✓</span>
                   <span className="font-sans text-sm text-ink sm:text-base">{tip.label}</span>
                 </li>
               ))}
             </ul>
-            {/* TBD: photo examples for do's — see kari_art_content_integration_plan.md */}
-            <p className="font-sans text-xs text-muted/70 italic border-t border-ink/[0.06] pt-4">
-              Photo examples coming soon.
-            </p>
+            {dosWithPhotos.length > 0 && (
+              <div className="border-t border-ink/[0.06] pt-5 mt-auto">
+                <p className="font-sans text-xs font-medium uppercase tracking-[0.14em] text-muted mb-3">
+                  Good examples
+                </p>
+                <div className="grid grid-cols-3 gap-2">
+                  {dosWithPhotos.map((tip) => (
+                    <div key={tip.photoSrc} className="relative aspect-square overflow-hidden rounded-sm">
+                      <Image
+                        src={tip.photoSrc}
+                        alt={tip.photoAlt}
+                        fill
+                        unoptimized
+                        className="object-cover"
+                        sizes="120px"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Don'ts */}
-          <div className="surface-card p-7 sm:p-8 space-y-5">
+          <div className="surface-card p-7 sm:p-8 flex flex-col">
             <h3 className="font-display text-xl font-medium tracking-[0.03em] text-ink">
               Don&rsquo;ts
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 mt-5">
               {photoTipsDonts.map((tip) => (
                 <li key={tip.label} className="flex items-start gap-3">
-                  <span className="mt-1 text-red-400 text-base leading-none" aria-hidden>✗</span>
+                  <span className="mt-1 text-red-400 text-base leading-none shrink-0" aria-hidden>✗</span>
                   <span className="font-sans text-sm text-ink sm:text-base">{tip.label}</span>
                 </li>
               ))}
             </ul>
-            {/* TBD: photo examples for don'ts — see kari_art_content_integration_plan.md */}
-            <p className="font-sans text-xs text-muted/70 italic border-t border-ink/[0.06] pt-4">
-              Photo examples coming soon.
-            </p>
+            {dontsWithPhotos.length > 0 && (
+              <div className="border-t border-ink/[0.06] pt-5 mt-auto">
+                <p className="font-sans text-xs font-medium uppercase tracking-[0.14em] text-muted mb-3">
+                  Bad examples
+                </p>
+                <div className="grid grid-cols-3 gap-2">
+                  {dontsWithPhotos.map((tip) => (
+                    <div key={tip.photoSrc} className="relative aspect-square overflow-hidden rounded-sm">
+                      <Image
+                        src={tip.photoSrc}
+                        alt={tip.photoAlt}
+                        fill
+                        unoptimized
+                        className="object-cover"
+                        sizes="120px"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
