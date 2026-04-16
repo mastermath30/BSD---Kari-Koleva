@@ -17,19 +17,19 @@ export type PhotoTip = {
 };
 
 export const photoTipsDos: PhotoTip[] = [
-  { label: "Show your pet's face clearly", photoSrc: "", photoAlt: "Example: face clearly visible (photo TBD)" },
+  { label: "Show your pet's face clearly", photoSrc: "https://assets.karikoleva.com/image4.webp", photoAlt: "Example: pet's face clearly visible" },
   { label: "Make eyes visible, unless pet is sleeping", photoSrc: "", photoAlt: "Example: eyes visible (photo TBD)" },
   { label: "Send multiple photos", photoSrc: "", photoAlt: "Example: multiple angles (photo TBD)" },
   { label: "Include interesting poses or expressions", photoSrc: "", photoAlt: "Example: interesting pose (photo TBD)" },
   { label: "Give your camera lens a clean!", photoSrc: "", photoAlt: "Example: clean lens result (photo TBD)" },
-  { label: "Sharp image (not blurry)", photoSrc: "", photoAlt: "Example: sharp image (photo TBD)" },
-  { label: "Natural lighting works best", photoSrc: "", photoAlt: "Example: natural lighting (photo TBD)" },
+  { label: "Sharp image (not blurry)", photoSrc: "https://assets.karikoleva.com/image5.webp", photoAlt: "Example: sharp, well-lit photo" },
+  { label: "Natural lighting works best", photoSrc: "https://assets.karikoleva.com/image3.webp", photoAlt: "Example: natural lighting" },
 ];
 
 export const photoTipsDonts: PhotoTip[] = [
-  { label: "Blurry photos", photoSrc: "", photoAlt: "Example: blurry photo (photo TBD)" },
+  { label: "Blurry photos", photoSrc: "https://assets.karikoleva.com/image2.webp", photoAlt: "Example: poor lighting and softness" },
   { label: "Face or important details covered (face, paws, etc.)", photoSrc: "", photoAlt: "Example: covered face (photo TBD)" },
-  { label: "Very dark or overly edited photos", photoSrc: "", photoAlt: "Example: too dark / edited (photo TBD)" },
+  { label: "Very dark or overly edited photos", photoSrc: "https://assets.karikoleva.com/image1.webp", photoAlt: "Example: dark, cluttered photo" },
   { label: "Strong flash reflections", photoSrc: "", photoAlt: "Example: flash reflection (photo TBD)" },
-  { label: "Extreme high angles", photoSrc: "", photoAlt: "Example: extreme angle (photo TBD)" },
+  { label: "Extreme high angles", photoSrc: "https://assets.karikoleva.com/image0.webp", photoAlt: "Example: overhead angle" },
 ];
